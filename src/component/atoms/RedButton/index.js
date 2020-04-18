@@ -6,7 +6,7 @@ import { colors, colortext } from '../../../utils';
 const RedButton = ({title}) => {
     return (
         <View > 
-            <TouchableOpacity 
+            <TouchableOpacity activeOpacity={0.8}
                 style={styles.button}>
                 <Text style={styles.text}> {title} </Text>
             </TouchableOpacity>

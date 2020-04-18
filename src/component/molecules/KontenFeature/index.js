@@ -1,13 +1,25 @@
 import React from 'react';
-import {Text, Image, View}  from 'react-native';
-import { Avatar } from '../../../assets';
+import { colors } from '../../../utils';
+import { Konten } from '../../atoms';
+import { Artikel, Video, Ebook } from '../../../assets';
+import {View} from 'react-native';
 
-const KontenFeature = ({title,img}) => {
+const KontenFeature = () => {
     return (
-        <View>
-            <Image source={Avatar}/>
-            <Text> {title}</Text>
+        <View style={styles.wrapper}>
+                <Konten title="Artikel" img={Artikel}/>
+                <Konten title="Video/Audio" img={Video}/>
+                <Konten title="E-Dokumen" img={Ebook}/>
         </View>
     )
+}
+
+const styles = {
+    wrapper : {
+        flex: 1, 
+        justifyContent: 'space-around', 
+        flexDirection: "row",
+        marginHorizontal : 20,
+    }
 }
 export default KontenFeature;

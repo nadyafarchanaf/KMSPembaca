@@ -1,23 +1,38 @@
 import React from 'react';
 import { TextInput } from 'react-native-gesture-handler';
+import { colortext, colors, icons } from '../../../utils';
+import { Icon } from 'react-native-elements';
+import CardView from 'react-native-cardview'
 
-const LoginInput =() => {
+const LoginInput =({placeholder, icon}) => {
     return (
-        <TextInput style={styles.box} onChangeText={text => setText(text)}/>
+    
+        <CardView style={styles.card} cardElevation={2} cardMaxElevation={2} cornerRadius={12}>
+            <Icon iconStyle={styles.icon} name={icon} size={20} color={icons.icon}/>
+            <TextInput style={styles.input} placeholder={placeholder} placeholderTextColor={colortext.black}/>
+        </CardView>
+    
     )
 }
 
 const styles = {
-    box : {
+    icon : {
+        marginVertical: 12,
+        marginLeft:12
+    },
+    card :{
+        flexDirection: 'row',
+        height: 45, 
+        marginHorizontal: 20, 
+        marginBottom: 31
+    },
+    input : {
+        backgroundColor:colors.white1,
+        paddingVertical: 8,
+        paddingHorizontal: 20,
         borderRadius: 12,
-        shadowColor: 'black',
-        shadowOffset: {
-            width: 0,
-            height: 4,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 3,
-        elevation: 10,
+        fontSize: 14,
+        fontWeight: 'normal'
     }
 }
 

@@ -18,9 +18,8 @@ const WelcomePage3 = ({navigation}) => {
             <View style={styles.circle1}/>
             <View style={styles.circle2}/>
             <View style={styles.circle3}/>
-            <View style={{flexDirection:"row", justifyContent:"space-between", bottom:0, marginBottom: 20, marginHorizontal:20, }}>
-                <OrangeButton title="Lewati" onPress={() => handleGoTo('Login')}/>
-                <RedButton title="Lanjut" onPress={() => handleGoTo('WelcomePage2')}/>
+            <View style={{bottom:0, marginBottom: 20, marginHorizontal:20, }}>
+                <RedButton title="Lanjut" onPress={() => handleGoTo('Login')}/>
             </View>
         </View>
     );

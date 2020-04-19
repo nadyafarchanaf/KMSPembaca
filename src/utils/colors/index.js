@@ -23,7 +23,7 @@ export const colortext = {
     gray: '#5B5B5B'
 };
 
-export const icon = {
+export const icons = {
     navbar: '#A6A5A5',
     icon: '#8E8E8E',
     search : '#8C8C8C',

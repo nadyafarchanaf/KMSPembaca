@@ -19,7 +19,7 @@ const WelcomePage1 = ({navigation}) => {
             <View style={styles.circle1}/>
             <View style={styles.circle2}/>
             <View style={styles.circle3}/>
-            <View style={{flexDirection:"row", justifyContent:"space-between", bottom:0, marginBottom: 20, marginHorizontal:20, }}>
+            <View style={styles.button}>
                 <OrangeButton title="Lewati" onPress={() => handleGoTo('Login')}/>
                 <RedButton title="Lanjut" onPress={() => handleGoTo('WelcomePage2')}/>
             </View>
@@ -29,6 +29,13 @@ const WelcomePage1 = ({navigation}) => {
 
 const styles = {
     flex: 1,
+    button : {
+        flexDirection:"row", 
+        justifyContent:"space-between", 
+        bottom:0, 
+        marginBottom: 20, 
+        marginHorizontal:20, 
+    },
     img : {
         height: 120,
         resizeMode: "contain",

@@ -17,6 +17,7 @@ const ActionButton = ({title, onPress}) => {
 
 const styles = {
     button : {
+        marginTop:10,
         backgroundColor: colors.red,
         marginHorizontal: 40,
         borderRadius : 12,
@@ -35,7 +36,7 @@ const styles = {
         fontSize:16, 
         fontFamily: 'Nunito', 
         fontWeight: 'bold', 
-        paddingVertical: 10, 
+        paddingVertical: 13, 
         paddingHorizontal: 29,
         textTransform:'capitalize',
         textAlign: 'center'

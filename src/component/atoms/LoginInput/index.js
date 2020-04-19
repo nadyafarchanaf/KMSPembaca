@@ -22,9 +22,9 @@ const styles = {
     },
     card :{
         flexDirection: 'row',
-        height: 45, 
-        marginHorizontal: 20, 
-        marginBottom: 31
+        height: 47, 
+        marginHorizontal: 40, 
+        marginBottom: 25
     },
     input : {
         backgroundColor:colors.white1,

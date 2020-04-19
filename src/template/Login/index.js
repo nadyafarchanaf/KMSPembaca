@@ -12,19 +12,21 @@ const LoginTemplate = () => {
         <View style={styles.boxlogo}>
             <Image source={Logo} style={styles.logo}/>
         </View>
-        <Text style={styles.text}>KMS Kelapa Sawit</Text>
+        <Text style={styles.text}>KMS SAWIT</Text>
     </View>
     )
 };
 const styles = {
     text : {
-        marginVertical: 20,
+        marginTop: 20,
+        marginBottom: 30,
         alignItems: 'center',
         textAlign: 'center',
         fontFamily: 'Nunito',
         fontWeight: 'bold',
         color:colors.red,
-        fontSize: 24
+        fontSize: 24,
+        elevation: 30,
     },
     logo : {
         marginTop: 5,

@@ -3,10 +3,10 @@ import {Text, View} from 'react-native';
 import {TouchableOpacity} from 'react-native-gesture-handler';
 import { colors, colortext } from '../../../utils';
 
-const RedButton = ({title}) => {
+const RedButton = ({title, onPress}) => {
     return (
         <View > 
-            <TouchableOpacity activeOpacity={0.8}
+            <TouchableOpacity activeOpacity={0.8} onPress={onPress}
                 style={styles.button}>
                 <Text style={styles.text}> {title} </Text>
             </TouchableOpacity>
@@ -19,8 +19,6 @@ const styles = {
     button : {
         backgroundColor: colors.red,
         borderRadius : 10,
-        alignSelf: 'flex-end',
-        marginRight: 10,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

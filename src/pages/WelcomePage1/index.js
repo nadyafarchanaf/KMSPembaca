@@ -19,21 +19,22 @@ const WelcomePage1 = ({navigation}) => {
             <View style={styles.circle1}/>
             <View style={styles.circle2}/>
             <View style={styles.circle3}/>
-            <View style={{flexDirection:"row", justifyContent:"space-between"}}>
-                <OrangeButton title="Lewati"/>
-                <RedButton title="Lanjut"/>
+            <View style={{flexDirection:"row", justifyContent:"space-between", bottom:0, marginBottom: 20, marginHorizontal:20, }}>
+                <OrangeButton title="Lewati" onPress={() => handleGoTo('Login')}/>
+                <RedButton title="Lanjut" onPress={() => handleGoTo('WelcomePage2')}/>
             </View>
         </View>
     );
 };
 
 const styles = {
+    flex: 1,
     img : {
         height: 120,
         resizeMode: "contain",
         alignSelf: "center",
         marginBottom : 30,
-        marginTop : 170,
+        marginTop : 200,
     },
     wrapper : {
         alignItems: 'center',
@@ -88,13 +89,12 @@ const styles = {
         elevation: 20,
     },
     circle3 : {
-        position: 'absolute',
-        width: 230,
-        height: 230,
-        borderRadius: 230/2,
+        width: 185,
+        height: 185,
+        borderRadius: 185/2,
         backgroundColor: colors.red,
-        top: 530,
-        left: -53,
+        bottom: -150,
+        left: -63,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -102,7 +102,6 @@ const styles = {
         },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        elevation: 20,
     }
 }
 

@@ -19,8 +19,6 @@ const styles = {
     button : {
         backgroundColor: colors.orange,
         borderRadius : 10,
-        alignSelf: 'flex-start',
-        marginRight: 10,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

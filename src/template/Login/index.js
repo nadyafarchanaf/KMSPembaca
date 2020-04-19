@@ -1,6 +1,7 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, Image, Text } from 'react-native';
 import { colors } from '../../utils';
+import { Logo } from '../../assets';
 
 
 const LoginTemplate = () => {
@@ -8,18 +9,45 @@ const LoginTemplate = () => {
     <View style={{position:'relative'}}>
         <View style={styles.circle2}/>
         <View style={styles.circle1}/>
-        <View style={styles.boxlogo}/>
+        <View style={styles.boxlogo}>
+            <Image source={Logo} style={styles.logo}/>
+        </View>
+        <Text style={styles.text}>KMS Kelapa Sawit</Text>
     </View>
     )
 };
 const styles = {
+    text : {
+        marginVertical: 20,
+        alignItems: 'center',
+        textAlign: 'center',
+        fontFamily: 'Nunito',
+        fontWeight: 'bold',
+        color:colors.red,
+        fontSize: 24
+    },
+    logo : {
+        marginTop: 5,
+        resizeMode: "center",
+        width: 110,
+        height: 110, 
+        alignSelf: "center",
+    },
     boxlogo : {
-        position: 'absolute',
         backgroundColor: colors.white1,
-        width: 100,
-        height: 100, 
-        justifyContent: 'center',
+        width: 120,
+        height: 120, 
+        alignSelf: 'center',
         marginTop: 143,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 6,
+        },
+        shadowOpacity: 0.2,
+        shadowRadius: 5,
+        elevation: 20,
+        borderRadius: 15
     },
     circle1 : {
         position: 'absolute',
@@ -53,7 +81,7 @@ const styles = {
         },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        elevation: 20,
+        elevation: 10,
     },
 }
 export default LoginTemplate;

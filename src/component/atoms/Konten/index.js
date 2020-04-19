@@ -34,7 +34,7 @@ const styles = {
         height: 65,
         marginHorizontal : 10,
         marginTop : 3,
-        resizeMode: "contain",
+        resizeMode: "cover",
         alignSelf: "center",
     },
     text : {

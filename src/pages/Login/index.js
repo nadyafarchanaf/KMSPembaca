@@ -16,7 +16,7 @@ const Login = ({navigation}) => {
             <View>
                 <LoginTemplate/>
                 <LoginInput placeholder="Email" icon="email"/>
-                <LoginInput placeholder="Password" icon="lock"/>
+                <LoginInput placeholder="Password" icon="lock" secureTextEntry={true}/>
             </View>
             <ActionButton title="Masuk" onPress={() => handleGoToNeverBack('Home')}/>
             <View style={styles.wrapper}>

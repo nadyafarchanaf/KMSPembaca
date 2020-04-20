@@ -40,7 +40,7 @@ const styles = {
         width: 120,
         height: 120, 
         alignSelf: 'center',
-        marginTop: 143,
+        marginTop: 110,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -57,7 +57,7 @@ const styles = {
         height: 233,
         borderRadius: 233/2,
         backgroundColor: colors.red,
-        top: -120,
+        top: -130,
         left: -70,
         shadowColor: "#000",
         shadowOffset: {
@@ -74,7 +74,7 @@ const styles = {
         height: 367,
         borderRadius: 367/2,
         backgroundColor: colors.orange,
-        top: -160,
+        top: -180,
         left: 130,
         shadowColor: "#000",
         shadowOffset: {

@@ -1,10 +1,13 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import { LoginTemplate } from '../../template';
+import { LoginInput } from '../../component/atoms';
 
 const Register = () => {
     return (
         <View>
-            <Text style={{color:'black'}}>Register</Text>
+            <LoginTemplate/>
+            <LoginInput placeholder="Email" icon="email"/>
         </View>
     );
 };

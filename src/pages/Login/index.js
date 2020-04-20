@@ -8,14 +8,17 @@ const Login = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
+    const handleGoToNeverBack = screen => {
+        navigation.replace(screen);
+    };
     return (
-        <KeyboardAwareScrollView>
+        <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View>
                 <LoginTemplate/>
                 <LoginInput placeholder="Email" icon="email"/>
                 <LoginInput placeholder="Password" icon="lock"/>
             </View>
-            <ActionButton title="Masuk"/>
+            <ActionButton title="Masuk" onPress={() => handleGoToNeverBack('Home')}/>
             <View style={styles.wrapper}>
                 <Text>Belum memiliki akun?</Text>
                 <Text style={styles.textbutton} onPress={() => handleGoTo('Register')}> Buat akun</Text>

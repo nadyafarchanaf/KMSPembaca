@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text} from 'react-native';
 import { LoginTemplate } from '../../template';
 import { LoginInput, ActionButton  } from '../../component/atoms';
@@ -7,14 +7,20 @@ import { useSelector, useDispatch } from 'react-redux';
 import { setForm } from '../../redux';
 
 const Register = ({navigation}) => {
-    const {form} = useSelector(state=> state.RegisterReducer);
-    const dispatch= useDispatch();
-    const onInputChange = (value, input)=> {
-        dispatch(setForm(inputType, value))
+    const [form, setForm] = useState({
+        fullName: '',
+        email:'',
+        password:''
+    });
+    const onInputChange = (value, input) => {
+        setForm({
+            ...form,
+            [input]: value,
+        })
     }
     const sendData = () => {
-        console.log('data yang dikirim', form)
-    }
+        console.log('apa kaba?', form);
+    };
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
@@ -36,12 +42,13 @@ const Register = ({navigation}) => {
                 <LoginInput placeholder="Password" icon="lock"
                     value={form.password}
                     onChangeText={value=>onInputChange(value, 'password')}
+                    secureTextEntry={true}
                 />
             </View>
-            <ActionButton title="Daftar" onPress={() => handleGoToNeverBack('Home')}/>
+            <ActionButton title="Daftar" onPress={sendData}/>
             <View style={styles.wrapper}>
                 <Text>Sudah memiliki akun?</Text>
-                <Text style={styles.textbutton} onPress={sendData}> Masuk</Text>
+                <Text style={styles.textbutton} onPress={() => handleGoToNeverBack('Login')}> Masuk</Text>
             </View>
         </KeyboardAwareScrollView>
     );

@@ -4,12 +4,16 @@ import { colortext, colors, icons } from '../../../utils';
 import { Icon } from 'react-native-elements';
 import CardView from 'react-native-cardview'
 
-const LoginInput =({placeholder, icon}) => {
+const LoginInput =({placeholder, icon, ...rest}) => {
     return (
     
         <CardView style={styles.card} cardElevation={2} cardMaxElevation={2} cornerRadius={12}>
             <Icon iconStyle={styles.icon} name={icon} size={20} color={icons.icon}/>
-            <TextInput style={styles.input} placeholder={placeholder} placeholderTextColor={colortext.black}/>
+            <TextInput style={styles.input} 
+                placeholder={placeholder} 
+                placeholderTextColor={colortext.black}
+                {...rest}
+            />
         </CardView>
     
     )

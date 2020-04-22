@@ -1,2 +1,4 @@
 import KontenFeature from './KontenFeature';
-export {KontenFeature};
+import NavigasiBar from './NavigasiBar';
+import Notifikasi from './Notifikasi';
+export {KontenFeature, NavigasiBar, Notifikasi};

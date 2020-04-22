@@ -53,6 +53,7 @@ const styles = {
         color:colors.green2,
         fontSize: 26,
         alignItems: 'center',
+        textShadowOffset:5
         },
     textred : {
         fontFamily: 'Nunito', 
@@ -60,6 +61,7 @@ const styles = {
         color:colors.red,
         fontSize: 18,
         alignItems: 'center',
+        textShadowOffset:5
     },
     circle1 : {
         position: 'absolute',

@@ -29,6 +29,7 @@ const styles = {
         color:colors.red,
         fontSize: 24,
         elevation: 30,
+        textShadowOffset: 5
     },
     logo : {
         marginTop: 5,

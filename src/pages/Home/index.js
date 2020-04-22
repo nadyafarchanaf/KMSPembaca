@@ -1,10 +1,12 @@
 import React from 'react';
 import {View, Text} from 'react-native';
+import { NavigasiBar, Notifikasi } from '../../component/molecules';
 
 const Home = () => {
     return (
         <View>
-            <Text style={{color:'black'}}>Home</Text>
+            <NavigasiBar/>
+            <Notifikasi/>
         </View>
     );
 };

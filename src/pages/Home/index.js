@@ -6,7 +6,7 @@ const Home = () => {
     return (
         <View>
             <NavigasiBar/>
-            <Notifikasi/>
+            <Notifikasi jumlah="3" notif="pada hari minggu"/>
         </View>
     );
 };

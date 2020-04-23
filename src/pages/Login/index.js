@@ -3,6 +3,7 @@ import {View, Text} from 'react-native';
 import { LoginInput, ActionButton } from '../../component/atoms';
 import { LoginTemplate } from '../../template';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
+import { validasiLogin } from '../../utils';
 
 const Login = ({navigation}) => {
     const [form, setForm] = useState({
@@ -12,7 +13,7 @@ const Login = ({navigation}) => {
     const onInputChange = (value, input) => {
         setForm({
             ...form,
-            [input]: value,
+            [input]: validasiLogin(value),
         })
     }
     const sendData = screen => {

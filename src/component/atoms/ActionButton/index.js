@@ -19,7 +19,7 @@ const styles = {
     button : {
         marginTop:10,
         backgroundColor: colors.red,
-        marginHorizontal: 40,
+        marginHorizontal: 35,
         borderRadius : 12,
         alignSelf: 'stretch',
         shadowColor: "#000",

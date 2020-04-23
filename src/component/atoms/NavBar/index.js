@@ -6,7 +6,7 @@ import { icons, colortext } from '../../../utils';
 const NavBar = ({icon, title}) => {
     return (
         <View style={styles.wrapper}>
-            <Icon iconStyle={styles.icon} name={icon} size={33} color={icons.icon}/>
+            <Icon iconStyle={styles.icon} name={icon} size={30} color={icons.icon}/>
             <Text style={styles.text}>{title}</Text>
         </View>
     )
@@ -21,7 +21,7 @@ const styles = {
     },
     text : {
         fontFamily: 'Nunito',
-        fontWeight: '700',
+        fontWeight: '600',
         fontSize: 11,
         textAlign: 'center',
         color: icons.icon,

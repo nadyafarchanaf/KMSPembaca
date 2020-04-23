@@ -46,7 +46,6 @@ const styles = {
         alignItems: 'center',
         textAlign: 'center',
         marginHorizontal: 40,
-        textShadowOffset:5
     },
     circle1 : {
         position: 'absolute',

@@ -34,7 +34,7 @@ const Login = ({navigation}) => {
                     onChangeText={value=>onInputChange(value, 'password')}
                     secureTextEntry={true}/>
             </View>
-            <ActionButton title="Masuk" onPress={() => sendData('Home')}/>
+            <ActionButton title="Masuk" onPress={() => sendData('NavigationBar')}/>
             <View style={styles.wrapper}>
                 <Text>Belum memiliki akun?</Text>
                 <Text style={styles.textbutton} onPress={() => handleGoTo('Register')}> Buat akun</Text>

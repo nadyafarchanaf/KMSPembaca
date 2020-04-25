@@ -4,6 +4,12 @@ import { colors } from '../../utils';
 import RedButton from '../../component/atoms/RedButton';
 import { Logo } from '../../assets';
 import { OrangeButton } from '../../component/atoms';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 
 const WelcomePage1 = ({navigation}) => {
     const handleGoTo = screen => {
@@ -37,11 +43,11 @@ const styles = {
         marginHorizontal:20, 
     },
     img : {
-        height: 120,
+        height: hp('18'),
         resizeMode: "contain",
         alignSelf: "center",
-        marginBottom : 30,
-        marginTop : 200,
+        marginBottom : hp('2'),
+        marginTop : hp('27'),
     },
     wrapper : {
         alignItems: 'center',
@@ -51,24 +57,27 @@ const styles = {
         fontFamily: 'Nunito',
         fontWeight: 'bold',
         color:colors.green2,
-        fontSize: 26,
+        fontSize: hp('3.7'),
         alignItems: 'center',
+        elevation: 20,
         },
     textred : {
         fontFamily: 'Nunito', 
-        fontWeight: '600',
+        fontWeight: '700',
         color:colors.red,
-        fontSize: 18,
+        fontSize: hp('3'),
         alignItems: 'center',
+        elevation: 20,
+        marginBottom:hp('1')
     },
     circle1 : {
         position: 'absolute',
-        width: 150,
-        height: 150,
-        borderRadius: 150/2,
+        width: wp("43"),
+        height: hp('24'),
+        borderRadius: hp('150/2'),
         backgroundColor: colors.red,
-        top: -62,
-        left: -40,
+        top: hp('-8'),
+        left: wp('-7'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -80,12 +89,12 @@ const styles = {
     },
     circle2 : {
         position: 'absolute',
-        width: 250,
-        height: 250,
+        width: wp('70'),
+        height: hp('40'),
         borderRadius: 250/2,
         backgroundColor: colors.orange,
         top: 150,
-        left: 330,
+        left: wp('79'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -93,7 +102,7 @@ const styles = {
         },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        elevation: 20,
+        elevation: 10,
     },
     circle3 : {
         width: 185,

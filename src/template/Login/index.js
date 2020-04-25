@@ -2,11 +2,17 @@ import React from 'react';
 import { View, Image, Text } from 'react-native';
 import { colors } from '../../utils';
 import { Logo } from '../../assets';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 
 
 const LoginTemplate = () => {
     return (
-    <View style={{position:'relative'}}>
+    <View style={{position:'relative', }}>
         <View style={styles.circle2}/>
         <View style={styles.circle1}/>
         <View style={styles.boxlogo}>
@@ -25,22 +31,22 @@ const styles = {
         fontFamily: 'Nunito',
         fontWeight: 'bold',
         color:colors.red,
-        fontSize: 24,
+        fontSize: hp('3.4'),
         elevation: 30,
     },
     logo : {
         marginTop: 5,
         resizeMode: "center",
-        width: 110,
-        height: 110, 
+        width: wp('25'),
+        height: hp('13'), 
         alignSelf: "center",
     },
     boxlogo : {
         backgroundColor: colors.white1,
-        width: 120,
-        height: 120, 
+        width: wp('27'),
+        height: hp('15'), 
         alignSelf: 'center',
-        marginTop: 110,
+        marginTop: hp('15'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -52,13 +58,13 @@ const styles = {
         borderRadius: 15
     },
     circle1 : {
-        position: 'absolute',
-        width: 233,
-        height: 233,
-        borderRadius: 233/2,
+        position:'absolute',
+        width: wp("57"),
+        height: hp('31'),
+        borderRadius: hp('233/2'),
         backgroundColor: colors.red,
-        top: -130,
-        left: -70,
+        top: hp('-19'),
+        left: wp('-13'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -69,13 +75,13 @@ const styles = {
         elevation: 20,
     },
     circle2 : {
-        position: 'absolute',
-        width: 367,
-        height: 367,
-        borderRadius: 367/2,
+        position:'absolute',
+        width: wp('81'),
+        height: hp('49'),
+        borderRadius: wp('367/2'),
         backgroundColor: colors.orange,
-        top: -180,
-        left: 130,
+        top: hp('-24'),
+        left: wp('35'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

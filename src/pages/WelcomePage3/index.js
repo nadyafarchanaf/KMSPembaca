@@ -4,6 +4,12 @@ import { colors } from '../../utils';
 import RedButton from '../../component/atoms/RedButton';
 import { Welcomepage3 } from '../../assets';
 import { OrangeButton } from '../../component/atoms';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 
 const WelcomePage3 = ({navigation}) => {
     const handleGoTo = screen => {
@@ -28,11 +34,11 @@ const WelcomePage3 = ({navigation}) => {
 const styles = {
     flex: 1,
     img : {
-        height: 120,
+        height: hp('18'),
         resizeMode: "contain",
         alignSelf: "center",
-        marginBottom : 30,
-        marginTop : 193,
+        marginBottom : hp('2'),
+        marginTop : hp('27'),
     },
     wrapper : {
         alignItems: 'center',
@@ -42,7 +48,7 @@ const styles = {
         fontFamily: 'Nunito',
         fontWeight: 'bold',
         color:colors.green2,
-        fontSize: 18,
+        fontSize: hp('2.7'),
         alignItems: 'center',
         textAlign: 'center',
         marginHorizontal: 40,
@@ -71,7 +77,7 @@ const styles = {
         borderRadius: 250/2,
         backgroundColor: colors.orange,
         top: 150,
-        left: 330,
+        left: wp('85'),
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
@@ -79,7 +85,7 @@ const styles = {
         },
         shadowOpacity: 0.2,
         shadowRadius: 5,
-        elevation: 20,
+        elevation: 10,
     },
     circle3 : {
         width: 185,

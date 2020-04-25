@@ -25,11 +25,11 @@ const styles = {
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 6,
+            height: 4,
         },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 20,
+        shadowOpacity: 0.15,
+        shadowRadius: 25,
+        elevation: 3,
     },
     text : {
         color:colortext.white, 

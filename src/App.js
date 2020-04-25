@@ -19,6 +19,8 @@ import { NavigationContainer } from '@react-navigation/native';
 import Router from './router';
 import { Provider } from 'react-redux';
 import {store} from './redux';
+import NavigationBar from './router';
+import Route from './router';
 
 const App = () => {
   return (

@@ -42,7 +42,7 @@ const Register = ({navigation}) => {
                     secureTextEntry={true}
                 />
             </View>
-            <ActionButton title="Daftar" onPress={() => sendData('Home')}/>
+            <ActionButton title="Daftar" onPress={() => sendData('NavigationBar')}/>
             <View style={styles.wrapper}>
                 <Text>Sudah memiliki akun?</Text>
                 <Text style={styles.textbutton} onPress={() => handleGoTo('Login')}> Masuk</Text>

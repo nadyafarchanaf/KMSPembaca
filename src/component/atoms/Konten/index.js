@@ -2,7 +2,12 @@ import React from 'react';
 import {Text, Image, View}  from 'react-native';
 import { colors, colortext } from '../../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 const Konten = ({title,img}) => {
     return (
     <View style={styles.wrapper}>
@@ -18,29 +23,28 @@ const Konten = ({title,img}) => {
 const styles = {
     wrapper : {
         backgroundColor : colors.green4,
-        height: 92,
-        width: 97,
+        height: hp('12'),
+        width: wp('25'),
         borderRadius: 15,
         shadowColor: 'black',
         shadowOffset: {
             width: 0,
             height: 4,
         },
-        shadowOpacity: 0.2,
+        shadowOpacity: 0.1,
         shadowRadius: 3,
-        elevation: 10,
+        elevation: 8,
     },
     image : {
-        height: 65,
-        marginHorizontal : 10,
+        height: hp('8.5'),
         marginTop : 3,
         resizeMode: "contain",
         alignSelf: "center",
     },
     text : {
         color:colortext.white, 
-        marginTop:-2,
-        fontSize: 14, 
+        marginTop:-4,
+        fontSize: hp('2'), 
         fontFamily: 'Nunito', 
         fontWeight: '600', 
         textTransform:'capitalize',

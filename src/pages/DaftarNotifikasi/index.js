@@ -1,10 +1,12 @@
 import React from 'react';
 import { View , Text} from 'react-native';
+import { BoxNotifikasi } from '../../component/molecules';
+import { PakarFemale } from '../../assets';
 
 const DaftarNotifikasi = ({jumlah,notif}) => {
     return (
         <View style={styles.wrapper}>
-           <Text>Daftar Notifikasi</Text>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
         </View>
     )
 };
@@ -32,8 +34,6 @@ const styles = {
     wrapper: {
         position: 'relative',
         flexDirection: 'row',
-        margin: 14,
-        height:105,
         // borderRadius: 20,
         // backgroundColor: colors.orange,
         shadowColor: "#000",

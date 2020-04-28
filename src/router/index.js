@@ -76,7 +76,7 @@ const Router = () => {
             <Stack.Screen name="WelcomePage2" component={WelcomePage2} options={{headerShown:false}}/>
             <Stack.Screen name="WelcomePage3" component={WelcomePage3} options={{headerShown:false}}/>
             <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
-            <Stack.Screen name="DaftarNotifikasi" component={DaftarNotifikasi}/>
+            <Stack.Screen name="Notifikasi" component={DaftarNotifikasi}/>
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
             <Stack.Screen name="Riwayat" component={Riwayat}/>

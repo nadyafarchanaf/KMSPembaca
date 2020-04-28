@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
         <View style={styles.wrapper}>
             <ScrollView style={styles.wrapper}>
                     <ProfilBeranda fullName="Nadya Farchana" role="Pakar"/>
-                    <Notifikasi onPress={()=>handleGoTo('DaftarNotifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+                    <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature />
                     <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>
             </ScrollView>

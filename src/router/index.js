@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil} from '../pages';
+import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil, Riwayat} from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors, icons } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -15,27 +15,14 @@ const NavigationBar=()=> {
         activeTintColor: colors.gray2,
         inactiveTintColor: icons.icon
       }}
-      screenOptions={({ route }) => ({
-        tabBarIcon: () => {
-          let iconName
-          if (route.name == 'Home') {
-            iconName = 'home'
-          } else if (route.name == 'Profil') {
-            iconName = 'person'
-          }
-          else if (route.name == 'Tersimpan') {
-            iconName = 'bookmark'
-          }
-          return <Icon iconStyle={styles.icon} name={iconName} size={30} color={colors.red}/>
-        }
-    })}>
+    >
       <Tab.Screen
         name="Home"
         component={Home}
         options={{
           tabBarLabel: 'Beranda',
           tabBarIcon: ({color}) => (
-            <Icon iconStyle={styles.icon} name="home" size={30} color={color}/>
+            <Icon iconStyle={styles.icon} name="home" size={28} color={color}/>
           ),
         }}
       />
@@ -45,7 +32,7 @@ const NavigationBar=()=> {
         options={{
           tabBarLabel: 'Tersimpan',
           tabBarIcon: ({color}) => (
-            <Icon iconStyle={styles.icon} name="bookmark" size={30} color={color}/>
+            <Icon iconStyle={styles.icon} name="bookmark" size={28} color={color}/>
           ),
         }}
       />
@@ -55,7 +42,7 @@ const NavigationBar=()=> {
         options={{
           tabBarLabel: 'Profil',
           tabBarIcon: ({color}) => (
-            <Icon iconStyle={styles.icon} name="person" size={30} color={color}/>
+            <Icon iconStyle={styles.icon} name="person" size={28} color={color}/>
           ),
         }}
       />
@@ -92,6 +79,7 @@ const Router = () => {
             <Stack.Screen name="DaftarNotifikasi" component={DaftarNotifikasi}/>
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
+            <Stack.Screen name="Riwayat" component={Riwayat}/>
         </Stack.Navigator>
     );
 };

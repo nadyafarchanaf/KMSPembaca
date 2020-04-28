@@ -33,7 +33,7 @@ const styles = {
         },
         shadowOpacity: 0.1,
         shadowRadius: 3,
-        elevation: 8,
+        elevation: 4,
     },
     image : {
         height: hp('8.5'),

@@ -10,7 +10,10 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 
-const Notifikasi = ({jumlah,notif, onPress}) => {
+const Notifikasi = ({jumlah,notif, onPress, navigation}) => {
+    const handleGoTo = screen => {
+        navigation.navigate(screen);
+    };
     return (
         <View style={styles.wrapper}>
             <ImageCircle img={Bell}/>
@@ -24,8 +27,7 @@ const Notifikasi = ({jumlah,notif, onPress}) => {
                 </View>
             </View>
             <View style={{marginBottom:10}}>
-                <Text style={styles.notif}>{notif}blablablabla</Text>
-                <Text style={styles.notif}>{notif}blablablabla</Text>
+                <Text style={styles.notif}>{notif.split('').slice(0, 30)}...</Text>
             </View>
             </View>
         </View>
@@ -67,11 +69,11 @@ const styles = {
         shadowColor: "#000",
         shadowOffset: {
             width: 0,
-            height: 6,
+            height: 3,
         },
-        shadowOpacity: 0.1,
+        shadowOpacity: 0.07,
         shadowRadius: 5,
-        elevation: 10
+        elevation: 4
     },
 }
 export default Notifikasi;

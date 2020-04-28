@@ -8,8 +8,10 @@ import Home from './Home';
 import DaftarNotifikasi from './DaftarNotifikasi';
 import Tersimpan from './Tersimpan';
 import Profil from './Profil';
+import Riwayat from './Riwayat';
 
 export {
+    Riwayat, 
     Splash, 
     Login, 
     Register, 

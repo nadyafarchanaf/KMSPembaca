@@ -9,5 +9,7 @@ import Artikel from './icon/artikel.png';
 import PakarFemale from './icon/teacher-female.png';
 import PakarMale from './icon/teacher-male.png';
 import Video from './icon/video.png';
+import Kelapa from './gambar/kelapa.jpg';
+import Chart from './gambar/chart.png';
 
-export {Avatar, Bell, Welcomepage2,Welcomepage3, Logo, Ebook, PakarFemale, PakarMale, Petani, Artikel, Video};
+export {Chart, Kelapa, Avatar, Bell, Welcomepage2,Welcomepage3, Logo, Ebook, PakarFemale, PakarMale, Petani, Artikel, Video};

@@ -7,6 +7,7 @@ const DaftarNotifikasi = ({jumlah,notif}) => {
     return (
         <View style={styles.wrapper}>
            <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
         </View>
     )
 };
@@ -33,17 +34,7 @@ const styles = {
     },
     wrapper: {
         position: 'relative',
-        flexDirection: 'row',
-        // borderRadius: 20,
-        // backgroundColor: colors.orange,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 6,
-        },
-        shadowOpacity: 0.2,
-        shadowRadius: 5,
-        elevation: 20
+        flexDirection: 'column',
     },
 }
 export default DaftarNotifikasi;

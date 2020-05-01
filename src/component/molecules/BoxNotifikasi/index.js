@@ -1,5 +1,5 @@
 import React from 'react';
-import { View , Text, TouchableOpacity} from 'react-native';
+import { View , Text, TouchableOpacity, Alert} from 'react-native';
 import { colors } from '../../../utils';
 import { ImageCircle } from '../../atoms';
 import {
@@ -9,9 +9,19 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 const BoxNotifikasi = ({img, name, role, isi}) => {
+    const handlerLongClick = () => {
+        //handler for Long Click
+        Alert.alert(
+            "Hapus notifikasi?",
+        " ",
+      [
+        { text: "Hapus", onPress: () => console.log("Hapus Notifikasi") }
+      ],
+      { cancelable: true },
+        )
+      };
     return (
-        <TouchableOpacity style={styles.wrapper} activeOpacity={0.6}>
-            <View style={styles.wrapper}>
+        <TouchableOpacity onLongPress={handlerLongClick} style={styles.wrapper} activeOpacity={0.6}>
             <ImageCircle img={img} />
             <View style={{flexDirection:'column'}}>
                 <View style={{flexDirection:'row'}}>
@@ -20,7 +30,6 @@ const BoxNotifikasi = ({img, name, role, isi}) => {
                 </View>
                 <Text style={styles.textisi}>{isi}</Text>
             </View>
-        </View>
         </TouchableOpacity>
     )
 };
@@ -55,10 +64,9 @@ const styles = {
         margin:8
     },
     wrapper: {
-        flexDirection:'row',
-        flex:1,
-        borderBottomWidth: 1,
-        borderTopWidth: 1,
+        position: 'relative',
+        flexDirection: 'row',
+        borderBottomWidth:1,
         borderColor: colors.gray3,
         backgroundColor: colors.white1,
     },

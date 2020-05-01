@@ -19,9 +19,9 @@ const BoxRiwayat = ({title,img, onPress}) => {
             <Text style={styles.textlain} onPress={onPress}>Lainnya</Text>
         </View>
         <View style={styles.wrapper}>
-            <BoxKonten title="Riwayat" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
-            <BoxKonten title="Riwayat" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
-            <BoxKonten title="Riwayat" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
+            <BoxKonten kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
+            <BoxKonten kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
+            <BoxKonten kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
         </View>
         </View>
     

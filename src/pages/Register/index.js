@@ -28,15 +28,15 @@ const Register = ({navigation}) => {
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View>
                 <LoginTemplate/>
-                <LoginInput placeholder="Nama" icon="person"
+                <LoginInput placeholder="Nama                                   " icon="person"
                     value={form.fullName}
                     onChangeText={value=>onInputChange(value, 'fullName')}
                 />
-                <LoginInput placeholder="Email" icon="email"
+                <LoginInput placeholder="Email                                  " icon="email"
                     value={form.email}
                     onChangeText={value=>onInputChange(value, 'email')}
                 />
-                <LoginInput placeholder="Password" icon="lock"
+                <LoginInput placeholder="Password                               " icon="lock"
                     value={form.password}
                     onChangeText={value=>onInputChange(value, 'password')}
                     secureTextEntry={true}

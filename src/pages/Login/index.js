@@ -27,10 +27,10 @@ const Login = ({navigation}) => {
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View>
                 <LoginTemplate/>
-                <LoginInput placeholder="Email" icon="email"
+                <LoginInput placeholder="Email                                    " icon="email"
                     onChangeText={value=>onInputChange(value, 'email')}
                 />
-                <LoginInput placeholder="Password" icon="lock" 
+                <LoginInput placeholder="Password                                 " icon="lock" 
                     onChangeText={value=>onInputChange(value, 'password')}
                     secureTextEntry={true}/>
             </View>

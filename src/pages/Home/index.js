@@ -11,7 +11,7 @@ const Home = ({navigation}) => {
     };
     return (
         <View style={styles.wrapper}>
-            <ScrollView style={styles.wrapper}>
+            <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
                     <ProfilBeranda fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature />

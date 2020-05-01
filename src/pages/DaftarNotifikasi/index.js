@@ -2,13 +2,18 @@ import React from 'react';
 import { View , Text} from 'react-native';
 import { BoxNotifikasi } from '../../component/molecules';
 import { PakarFemale } from '../../assets';
+import { ScrollView } from 'react-native-gesture-handler';
 
 const DaftarNotifikasi = ({jumlah,notif}) => {
     return (
-        <View style={styles.wrapper}>
+        <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
            <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
            <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-        </View>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
+           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
+        </ScrollView>
     )
 };
 const styles = {

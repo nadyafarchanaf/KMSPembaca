@@ -4,6 +4,7 @@ import { NavigasiBar, Notifikasi, KontenFeature, BoxRiwayat } from '../../compon
 import { ScrollView } from 'react-native-gesture-handler';
 import { ProfilBeranda, BoxKonten } from '../../component/atoms';
 import { colors } from '../../utils';
+import { PakarFemale } from '../../assets';
 
 const Home = ({navigation}) => {
     const handleGoTo = screen => {
@@ -12,7 +13,7 @@ const Home = ({navigation}) => {
     return (
         <View style={styles.wrapper}>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-                    <ProfilBeranda fullName="Nadya Farchana" role="Pakar"/>
+                    <ProfilBeranda img={PakarFemale} fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature />
                     <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>

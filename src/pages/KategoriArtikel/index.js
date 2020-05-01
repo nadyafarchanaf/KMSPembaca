@@ -3,7 +3,7 @@ import { View, Text } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton } from '../../component/atoms';
 
-const Kategori = () => {
+const KategoriArtikel = () => {
     return (
         <ScrollView showsVerticalScrollIndicator={false}>
             <SearchBox/>
@@ -11,4 +11,4 @@ const Kategori = () => {
         </ScrollView>
     )
 };
-export default Kategori;
+export default KategoriArtikel;

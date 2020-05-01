@@ -1,6 +1,6 @@
 import React from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil, Riwayat, Kategori} from '../pages';
+import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil, Riwayat, Kategori, KategoriArtikel} from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors, icons } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -80,7 +80,7 @@ const Router = () => {
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
             <Stack.Screen name="Riwayat" component={Riwayat}/>
-            <Stack.Screen name="Kategori" component={Kategori}/>
+            <Stack.Screen name="Kategori" component={KategoriArtikel}/>
         </Stack.Navigator>
     );
 };

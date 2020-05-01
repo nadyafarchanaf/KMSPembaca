@@ -9,10 +9,10 @@ import DaftarNotifikasi from './DaftarNotifikasi';
 import Tersimpan from './Tersimpan';
 import Profil from './Profil';
 import Riwayat from './Riwayat';
-import Kategori from './Kategori';
+import KategoriArtikel from './KategoriArtikel';
 
 export {
-    Kategori,
+    KategoriArtikel,
     Riwayat, 
     Splash, 
     Login, 

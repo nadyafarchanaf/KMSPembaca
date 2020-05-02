@@ -11,6 +11,7 @@ import {
   } from 'react-native-responsive-screen';
 
 const SearchBox =({placeholder, icon, ...rest}) => {
+    
     return (
     
         <CardView style={styles.card} cardElevation={2} cardMaxElevation={2} cornerRadius={8}>
@@ -20,6 +21,7 @@ const SearchBox =({placeholder, icon, ...rest}) => {
                 placeholderTextColor={colortext.black}
                 {...rest}
             />
+
         </CardView>
     
     )

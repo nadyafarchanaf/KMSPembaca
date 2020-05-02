@@ -8,10 +8,10 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-const Konten = ({title,img}) => {
+const Konten = ({title,img, onPress}) => {
     return (
     <View style={styles.wrapper}>
-        <TouchableOpacity style={styles.wrapper} activeOpacity={0.7}>
+        <TouchableOpacity style={styles.wrapper} activeOpacity={0.7} onPress={onPress}>
             <Image source={img} style={styles.image}/>
             <Text style={styles.text}> {title}</Text>
         </TouchableOpacity>

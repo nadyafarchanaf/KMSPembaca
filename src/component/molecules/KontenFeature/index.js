@@ -4,14 +4,14 @@ import { Konten } from '../../atoms';
 import { Artikel, Video, Ebook } from '../../../assets';
 import {View, Text} from 'react-native';
 
-const KontenFeature = () => {
+const KontenFeature = ({onPressArtikel, onPressVideo, onPressDokumen}) => {
     return (
         <View>
         <Text style={styles.text}>Konten KMS</Text>
             <View style={styles.wrapper}>
-                    <Konten title="Artikel" img={Artikel}/>
-                    <Konten title="Video/Audio" img={Video}/>
-                    <Konten title="E-Dokumen" img={Ebook}/>
+                    <Konten title="Artikel" img={Artikel} onPress={onPressArtikel}/>
+                    <Konten title="Video/Audio" img={Video} onPress={onPressVideo}/>
+                    <Konten title="E-Dokumen" img={Ebook} onPress={onPressDokumen}/>
             </View>
         </View>
     )

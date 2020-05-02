@@ -15,7 +15,10 @@ const Home = ({navigation}) => {
             <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
                     <ProfilBeranda img={PakarFemale} fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
-                    <KontenFeature />
+                    <KontenFeature 
+                    onPressArtikel={()=>handleGoTo('Artikel')} 
+                    onPressVideo={()=>handleGoTo('Video')} 
+                    onPressDokumen={()=>handleGoTo('Dokumen')}/>
                     <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>
             </ScrollView>
         </View>

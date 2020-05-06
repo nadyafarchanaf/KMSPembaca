@@ -19,7 +19,7 @@ const BoxKontenRiwayat = ({title,img, isi, kategori}) => {
             <View style={{marginRight:30}}>
                 <Text style={styles.textkategori}>{kategori}</Text>
                 <Text style={styles.text}>{title}</Text>
-                <Text style={styles.textisi}>{isi.split('').slice(0, 65)}...</Text>
+                <Text style={styles.textisi}>{isi.split('').slice(0, 60)}...</Text>
             </View>
         </TouchableOpacity>
     
@@ -65,6 +65,7 @@ const styles = {
         fontWeight: '600', 
         textAlign: 'justify',
         width:wp('60'),
+        marginBottom: 5
     },
     textkategori: {
         marginTop:6,

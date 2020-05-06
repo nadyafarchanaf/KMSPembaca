@@ -6,7 +6,7 @@ import { Logo } from '../../assets';
 const Splash = ({navigation}) => {
     useEffect (()=> {
         setTimeout(() => {
-                navigation.replace('WelcomePage1');
+                navigation.replace('NavigationBar');
         }, 2000);
     });
     return (

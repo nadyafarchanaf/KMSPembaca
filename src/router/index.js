@@ -68,8 +68,8 @@ const Stack = createStackNavigator();
 const Router = () => {
     return (
         <Stack.Navigator>
-            <Stack.Screen name="NavigationBar" component={NavigationBar} options={{headerShown:false}}/>
             <Stack.Screen name="Splash" component={Splash} options={{headerShown:false}}/>
+            <Stack.Screen name="NavigationBar" component={NavigationBar} options={{headerShown:false}}/>
             <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
             <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
             <Stack.Screen name="WelcomePage1" component={WelcomePage1} options={{headerShown:false}}/>
@@ -80,7 +80,7 @@ const Router = () => {
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
             <Stack.Screen name="Riwayat" component={Riwayat}/>
-            <Stack.Screen name="Kategori" component={KategoriArtikel}/>
+            <Stack.Screen name="Kategori Artikel" component={KategoriArtikel}/>
             <Stack.Screen name="Video" component={DaftarVideo}/>
             <Stack.Screen name="Dokumen" component={DaftarDokumen}/>
             <Stack.Screen name="Artikel" component={DaftarArtikel}/>

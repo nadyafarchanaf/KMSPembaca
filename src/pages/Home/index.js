@@ -16,7 +16,7 @@ const Home = ({navigation}) => {
                     <ProfilBeranda img={PakarFemale} fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature 
-                    onPressArtikel={()=>handleGoTo('Artikel')} 
+                    onPressArtikel={()=>handleGoTo('Kategori Artikel')} 
                     onPressVideo={()=>handleGoTo('Video')} 
                     onPressDokumen={()=>handleGoTo('Dokumen')}/>
                     <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>

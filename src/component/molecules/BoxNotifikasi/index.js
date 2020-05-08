@@ -1,5 +1,5 @@
-import React from 'react';
-import { View , Text, TouchableOpacity, Alert} from 'react-native';
+import React, { useState } from 'react';
+import { View , Text, TouchableOpacity, Alert, Modal} from 'react-native';
 import { colors } from '../../../utils';
 import { ImageCircle } from '../../atoms';
 import {
@@ -9,19 +9,33 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 const BoxNotifikasi = ({img, name, role, isi}) => {
-    const handlerLongClick = () => {
-        //handler for Long Click
-        Alert.alert(
-            "Hapus notifikasi?",
-        " ",
-      [
-        { text: "Hapus", onPress: () => console.log("Hapus Notifikasi") }
-      ],
-      { cancelable: true },
-        )
-      };
+      const [modalVisible, setModalVisible] = useState(false);
     return (
-        <TouchableOpacity onLongPress={handlerLongClick} style={styles.wrapper} activeOpacity={0.6}>
+        <TouchableOpacity onLongPress={() => {
+            setModalVisible(true);
+          }} style={styles.wrapper} activeOpacity={0.6}>
+            <Modal
+                animationType="none"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                Alert.alert("Modal has been closed.");
+                }}>
+                <View style={styles.centeredView}>
+                <View style={styles.modalView}>
+                    <Text style={styles.modalText}>Hapus notifikasi?</Text>
+
+                    <TouchableOpacity
+                    style={{ ...styles.openButton, backgroundColor: colors.red }}
+                    onPress={() => {
+                        setModalVisible(!modalVisible);
+                    }}
+                    >
+                    <Text style={styles.textStyle}>Hapus</Text>
+                    </TouchableOpacity>
+                </View>
+                </View>
+            </Modal>
             <ImageCircle img={img} />
             <View style={{flexDirection:'column'}}>
                 <View style={{flexDirection:'row'}}>
@@ -34,7 +48,44 @@ const BoxNotifikasi = ({img, name, role, isi}) => {
     )
 };
 const styles = {
-    button: {
+    centeredView: {
+        flex: 1,
+        justifyContent: "center",
+        alignItems: "center",
+        backgroundColor: 'rgba(0, 0, 0, 0.5)'
+      },
+    modalView: {
+        margin:20,
+        backgroundColor: "white",
+        borderRadius: 10,
+        paddingHorizontal: 70,
+        paddingVertical:20,
+        alignItems: "center",
+        shadowColor: "#000",
+        shadowOffset: {
+          width: 0,
+          height: 2
+        },
+        shadowOpacity: 0.25,
+        shadowRadius: 3.84,
+        elevation: 5
+      },
+      openButton: {
+        borderRadius: 10,
+        paddingVertical: 10,
+        paddingHorizontal: 50,
+        elevation: 2
+      },
+      textStyle: {
+        color: "white",
+        fontWeight: "bold",
+        textAlign: "center"
+      },
+      modalText: {
+        marginBottom: 15,
+        textAlign: "center"
+      }
+    ,button: {
         flex: 1, 
         flexDirection:'row',
         justifyContent:'space-between',

@@ -7,6 +7,17 @@ import { PakarMale } from '../../assets';
 
 const Profil = ({navigation}) => {
     const handleGoTo = screen => {
+        fetch(`http://117.53.47.76/kms_backend/public/api/petani/logout`,
+        {
+            method:"POST"
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson)
+        })
+        .catch((error) => {
+          console.error(error);
+        });
         navigation.navigate(screen);
     };
     return(

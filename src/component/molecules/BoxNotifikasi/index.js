@@ -9,33 +9,22 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 const BoxNotifikasi = ({img, name, role, isi}) => {
-      const [modalVisible, setModalVisible] = useState(false);
+  const handlerLongClick = () => {
+    //handler for Long Click
+    Alert.alert(
+          "Hapus notifikasi?",
+          " ",
+        [
+          { text: "Batal", onPress: () => console.log("Batal Hapus Notifikasi") },
+          { text: "Hapus", onPress: () => console.log("Hapus Notifikasi") },
+        ],
+        { cancelable: true },
+          )
+        };
     return (
-        <TouchableOpacity onLongPress={() => {
-            setModalVisible(true);
-          }} style={styles.wrapper} activeOpacity={0.6}>
-            <Modal
-                animationType="none"
-                transparent={true}
-                visible={modalVisible}
-                onRequestClose={() => {
-                Alert.alert("Modal has been closed.");
-                }}>
-                <View style={styles.centeredView}>
-                <View style={styles.modalView}>
-                    <Text style={styles.modalText}>Hapus notifikasi?</Text>
-
-                    <TouchableOpacity
-                    style={{ ...styles.openButton, backgroundColor: colors.red }}
-                    onPress={() => {
-                        setModalVisible(!modalVisible);
-                    }}
-                    >
-                    <Text style={styles.textStyle}>Hapus</Text>
-                    </TouchableOpacity>
-                </View>
-                </View>
-            </Modal>
+        <TouchableOpacity onLongPress={
+            handlerLongClick
+          } style={styles.wrapper} activeOpacity={0.6}>
             <ImageCircle img={img} />
             <View style={{flexDirection:'column'}}>
                 <View style={{flexDirection:'row'}}>

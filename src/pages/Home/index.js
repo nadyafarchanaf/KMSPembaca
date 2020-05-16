@@ -10,6 +10,23 @@ const Home = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
+    const getData = screen => {
+        fetch(`http://117.53.47.76/kms_backend/public/api/profil`,
+        {
+            method:"GET",
+            body: JSON.stringify(form)
+        })
+        .then((response) => response.text())
+        .then((responseJson) => {
+            console.log(responseJson)
+            deviceStorage.onSignIn("userToken", responseJson.access_token)
+        })
+        .catch((error) => {
+            console.error(error);
+        });
+        console.log('kirim data', form);
+        navigation.replace(screen);
+    };
     return (
         <View style={styles.wrapper}>
             <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
@@ -17,9 +34,9 @@ const Home = ({navigation}) => {
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature 
                     onPressArtikel={()=>handleGoTo('Kategori Artikel')} 
-                    onPressVideo={()=>handleGoTo('Video')} 
-                    onPressDokumen={()=>handleGoTo('Dokumen')}/>
-                    <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>
+                    onPressVideo={()=>handleGoTo('Daftar Video')} 
+                    onPressDokumen={()=>handleGoTo('Daftar Dokumen')}/>
+                    <BoxRiwayat onPress={()=>handleGoTo('Daftar Riwayat')}/>
             </ScrollView>
         </View>
     );

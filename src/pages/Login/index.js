@@ -15,19 +15,23 @@ const Login = ({navigation}) => {
     const onInputChange = (value, input) => {
         setForm({
             ...form,
-            [input]: validasiLogin(value),
+            [input]: value,
         })
     }
     const sendData = screen => {
-        fetch(`http://117.53.47.76/kms_backend/public/api/petani/login`,
+        fetch(`http://117.53.47.76/kms_backend/public/api/login`,
         {
             method:"POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(form)
         })
-        .then((response) => response.json())
+        .then((response) => response.text())
         .then((responseJson) => {
             console.log(responseJson)
-            deviceStorage.saveItem("access_token", responseJson.access_token)
+            deviceStorage.onSignIn("userToken", responseJson.access_token)
         })
         .catch((error) => {
             console.error(error);
@@ -35,9 +39,6 @@ const Login = ({navigation}) => {
         console.log('kirim data', form);
         navigation.replace(screen);
     };
-    useEffect (() => {
-        console.log (deviceStorage.getItem("access_token"))
-    })
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };

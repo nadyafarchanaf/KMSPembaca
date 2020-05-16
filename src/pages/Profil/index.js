@@ -4,16 +4,22 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { NavigasiBar } from '../../component/molecules';
 import { ProfilBeranda, ActionButton } from '../../component/atoms';
 import { PakarMale } from '../../assets';
+import deviceStorage from '../../service/deviceStorage';
 
 const Profil = ({navigation}) => {
     const handleGoTo = screen => {
-        fetch(`http://117.53.47.76/kms_backend/public/api/petani/logout`,
+        fetch(`http://117.53.47.76/kms_backend/public/api/logout`,
         {
-            method:"POST"
+            method:"POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
         })
         .then((response) => response.json())
         .then((responseJson) => {
           console.log(responseJson)
+          deviceStorage.onSignOut('userToken')
         })
         .catch((error) => {
           console.error(error);

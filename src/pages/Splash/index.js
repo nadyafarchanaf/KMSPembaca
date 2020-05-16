@@ -2,6 +2,12 @@ import React, { useEffect } from 'react';
 import {View, Text, Image} from 'react-native';
 import { colors } from '../../utils';
 import { Logo } from '../../assets';
+import {
+    widthPercentageToDP as wp,
+    heightPercentageToDP as hp,
+    listenOrientationChange as loc,
+    removeOrientationListener as rol
+  } from 'react-native-responsive-screen';
 
 const Splash = ({navigation}) => {
     useEffect (()=> {
@@ -33,14 +39,14 @@ const styles = {
     logo : {
         marginTop: 5,
         resizeMode: "center",
-        width: 110,
-        height: 110, 
+        width: wp("30"),
+        height: hp('14'), 
         alignSelf: "center",
     },
     boxlogo : {
         backgroundColor: colors.white1,
-        width: 120,
-        height: 120, 
+        width: wp('30'),
+        height: hp('16'), 
         alignSelf: 'center',
         marginTop: 160,
         shadowColor: "#000",

@@ -1,54 +1,31 @@
-import React from 'react';
-import { TextInput } from 'react-native-gesture-handler';
-import { colortext, colors, icons } from '../../../utils';
-import { Icon } from 'react-native-elements';
-import CardView from 'react-native-cardview';
-import {
-    widthPercentageToDP as wp,
-    heightPercentageToDP as hp,
-    listenOrientationChange as loc,
-    removeOrientationListener as rol
-  } from 'react-native-responsive-screen';
+import { SearchBar } from 'react-native-elements';
+import React, { Component } from 'react';
+import { colors } from '../../../utils';
+import { color } from 'react-native-reanimated';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
 
-const SearchBox =({placeholder, icon, ...rest}) => {
-    
+class SearchBox extends Component {
+  state = {
+    search: '',
+  };
+
+  updateSearch = search => {
+    this.setState({ search });
+  };
+
+  render() {
+    const { search } = this.state;
+
     return (
-    
-        <CardView style={styles.card} cardElevation={2} cardMaxElevation={2} cornerRadius={8}>
-            <Icon iconStyle={styles.icon} name="search" size={20} color={colors.gray2}/>
-            <TextInput style={styles.input} 
-                placeholder="Cari                                                          " 
-                placeholderTextColor={colortext.black}
-                {...rest}
-            />
-
-        </CardView>
-    
-    )
+      <SearchBar
+        placeholder="Cari"
+        onChangeText={this.updateSearch}
+        value={search}
+        inputStyle={{fontSize:14, fontWeight: 'normal', fontFamily:'Nunito'}}
+        containerStyle={{height :50, backgroundColor:color.white, borderTopColor:colors.gray4, borderBottomWidth:0, marginBottom:10}}
+        inputContainerStyle={{height :40, backgroundColor:colors.gray4, borderRadius: 7}}
+      />
+    );
+  }
 }
-
-const styles = {
-    icon : {
-        marginVertical: 12,
-        marginLeft:12
-    },
-    card :{
-        flexDirection: 'row',
-        height: 40, 
-        marginHorizontal: 13, 
-        marginVertical: 10,
-        flex:1,
-        opacity: .4,
-        backgroundColor:colors.gray4,
-    },
-    input : {
-        backgroundColor:colors.gray4,
-        paddingVertical: 8,
-        paddingHorizontal: 20,
-        borderRadius: 7,
-        fontSize: 14,
-        fontWeight: 'normal',
-    }
-}
-
 export default SearchBox;

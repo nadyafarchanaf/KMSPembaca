@@ -3,14 +3,13 @@ import {View, Text} from 'react-native';
 import { LoginTemplate } from '../../template';
 import { LoginInput, ActionButton  } from '../../component/atoms';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import axios from 'axios';
+import deviceStorage from '../../service/deviceStorage';
 
 const Register = ({navigation}) => {
     const [form, setForm] = useState({
         nama: '',
         email:'',
         password:'',
-        password_confirmation:'',
     });
     // const insertForm = (form) => {
     //     axios.post(`17.53.47.76/kms_backend/public/petani/register`,
@@ -39,11 +38,16 @@ const Register = ({navigation}) => {
         fetch(`http://117.53.47.76/kms_backend/public/api/petani/register`,
         {
             method:"POST",
+            headers: {
+                Accept: 'application/json',
+                'Content-Type': 'application/json'
+            },
             body: JSON.stringify(form)
         })
         .then((response) => response.json())
         .then((responseJson) => {
-          console.log(responseJson)
+            console.log(responseJson)
+            deviceStorage.onSignIn("userToken", responseJson.access_token)
         })
         .catch((error) => {
           console.error(error);

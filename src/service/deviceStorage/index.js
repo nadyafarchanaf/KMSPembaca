@@ -1,20 +1,28 @@
 import AsyncStorage from "@react-native-community/async-storage";
+import { Alert } from "react-native";
 
 
 const deviceStorage =  {
-        async saveItem(key, value) {
+        async onSignIn(key, value) {
         try {
          await AsyncStorage.setItem(key, value)
         } catch (error) {
           console.log('AsyncStorage Error: ' + error.message);
         }
       },
-      async getItem(key) {
+      async isSignedIn(key) {
+          try { 
+            await AsyncStorage.getItem(key)
+          }
+            catch (error) { 
+              console.log('AsyncStorage Error: ' + error.message);
+            }
+      },
+      async onSignOut(key) {
         try {
-          let userData = await AsyncStorage.getItem(key);
-          let data = JSON.parse(userData);
-          console.log(data);
-        } catch (error) {
+          await AsyncStorage.removeItem(key);
+        }
+        catch (error) {
           console.log('AsyncStorage Error: ' + error.message);
         }
       }

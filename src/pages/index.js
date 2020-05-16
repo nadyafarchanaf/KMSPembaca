@@ -13,7 +13,10 @@ import KategoriArtikel from './KategoriArtikel';
 import DaftarArtikel from './DaftarArtikel';
 import DaftarVideo from './DaftarVideo';
 import DaftarDokumen from './DaftarDokumen';
+import NavigationBar from './NavigationBar';
+import PageVideo from './PageVideo'
 export {
+    PageVideo,
     DaftarDokumen,
     DaftarArtikel,
     DaftarVideo,
@@ -28,5 +31,6 @@ export {
     Home, 
     DaftarNotifikasi, 
     Tersimpan, 
-    Profil
+    Profil,
+    NavigationBar
 };

@@ -16,7 +16,9 @@ import DaftarDokumen from './DaftarDokumen';
 import NavigationBar from './NavigationBar';
 import PageVideo from './PageVideo';
 import PageDokumen from './PageDokumen';
+import PageArtikel from './PageArtikel';
 export {
+    PageArtikel,
     PageDokumen,
     PageVideo,
     DaftarDokumen,

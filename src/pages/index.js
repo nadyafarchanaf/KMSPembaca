@@ -14,8 +14,10 @@ import DaftarArtikel from './DaftarArtikel';
 import DaftarVideo from './DaftarVideo';
 import DaftarDokumen from './DaftarDokumen';
 import NavigationBar from './NavigationBar';
-import PageVideo from './PageVideo'
+import PageVideo from './PageVideo';
+import PageDokumen from './PageDokumen';
 export {
+    PageDokumen,
     PageVideo,
     DaftarDokumen,
     DaftarArtikel,

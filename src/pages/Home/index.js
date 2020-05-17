@@ -35,7 +35,7 @@ const Home = ({navigation}) => {
                     <KontenFeature 
                     onPressArtikel={()=>handleGoTo('Kategori Artikel')} 
                     onPressVideo={()=>handleGoTo('Daftar Video')} 
-                    onPressDokumen={()=>handleGoTo('Daftar Dokumen')}/>
+                    onPressDokumen={()=>handleGoTo('Daftar E-Dokumen')}/>
                     <BoxRiwayat onPress={()=>handleGoTo('Daftar Riwayat')}/>
             </ScrollView>
         </View>

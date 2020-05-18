@@ -12,7 +12,7 @@ import {
 const Splash = ({navigation}) => {
     useEffect (()=> {
         setTimeout(() => {
-                navigation.replace('NavigationBar');
+                navigation.replace('KMS Sawit');
         }, 2000);
     });
     return (

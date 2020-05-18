@@ -15,6 +15,7 @@ const NavigationBar=()=> {
         activeTintColor: colors.gray2,
         inactiveTintColor: icons.icon
       }}
+      backBehavior='none'
     >
       <Tab.Screen
         name="Home"

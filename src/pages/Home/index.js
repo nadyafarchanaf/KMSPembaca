@@ -1,8 +1,8 @@
 import React from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, FlatList} from 'react-native';
 import { NavigasiBar, Notifikasi, KontenFeature, BoxRiwayat } from '../../component/molecules';
 import { ScrollView } from 'react-native-gesture-handler';
-import { ProfilBeranda, BoxKonten } from '../../component/atoms';
+import { ProfilBeranda, BoxKonten, HeaderBar } from '../../component/atoms';
 import { colors } from '../../utils';
 import { PakarFemale } from '../../assets';
 
@@ -29,7 +29,10 @@ const Home = ({navigation}) => {
     };
     return (
         <View style={styles.wrapper}>
-            <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+        
+            <FlatList  showsVerticalScrollIndicator={false}
+                ListHeaderComponent= {
+                    <>
                     <ProfilBeranda img={PakarFemale} fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature 
@@ -37,7 +40,9 @@ const Home = ({navigation}) => {
                     onPressVideo={()=>handleGoTo('Daftar Video')} 
                     onPressDokumen={()=>handleGoTo('Daftar E-Dokumen')}/>
                     <BoxRiwayat onPress={()=>handleGoTo('Riwayat')}/>
-            </ScrollView>
+                    </>
+                }
+            />
         </View>
     );
 };

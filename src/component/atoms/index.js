@@ -11,4 +11,5 @@ import WhiteButton from './WhiteButton';
 import BoxKontenRiwayat from './BoxKontenRiwayat';
 import BookmarkButton from './BookmarkButton';
 import DownloadButton from './DownloadButton';
-export {DownloadButton, BoxKontenRiwayat, BookmarkButton, WhiteButton, SearchBox, ActionButton, BoxKonten, OrangeButton, RedButton, Konten, LoginInput, ImageCircle,ProfilBeranda};
+import HeaderBar from './HeaderBar';
+export {HeaderBar, DownloadButton, BoxKontenRiwayat, BookmarkButton, WhiteButton, SearchBox, ActionButton, BoxKonten, OrangeButton, RedButton, Konten, LoginInput, ImageCircle,ProfilBeranda};

@@ -24,7 +24,7 @@ const Profil = ({navigation}) => {
         .catch((error) => {
           console.error(error);
         });
-        navigation.navigate(screen);
+        navigation.replace(screen);
     };
     return(
         <View>

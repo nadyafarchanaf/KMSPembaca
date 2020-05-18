@@ -1,19 +1,34 @@
 import React from 'react';
-import { View , Text} from 'react-native';
+import { View , Text, SafeAreaView, FlatList} from 'react-native';
 import { BoxNotifikasi } from '../../component/molecules';
 import { PakarFemale } from '../../assets';
 import { ScrollView } from 'react-native-gesture-handler';
 
+const DATA = [
+    {
+        id: '1',
+        img:PakarFemale,
+        name:'Nadya Farchana',
+        role:'Pakar Sawit',
+        isi:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    }
+]
 const DaftarNotifikasi = ({jumlah,notif}) => {
     return (
-        <ScrollView showsVerticalScrollIndicator={false} style={styles.wrapper}>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-           <BoxNotifikasi img={PakarFemale} name='Nadya Farchana' role='Pakar Sawit' isi='aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'/>
-        </ScrollView>
+        <SafeAreaView showsVerticalScrollIndicator={false} style={styles.wrapper}>
+           <FlatList
+                showsVerticalScrollIndicator={false}
+                data={DATA}
+                renderItem={({item}) => 
+                    <BoxNotifikasi  img={item.img} 
+                                    name={item.name} 
+                                    role={item.role} 
+                                    isi={item.isi}
+                                    />  
+                }
+                keyExtractor={item => item.id}
+            />
+        </SafeAreaView>
     )
 };
 const styles = {

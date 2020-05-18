@@ -31,6 +31,7 @@ const styles = {
     wrapper : {
         position: 'relative',
         marginTop:10,
+        marginBottom:1,
         flexDirection: 'row',
         marginHorizontal: 10,
         height:hp('13'),

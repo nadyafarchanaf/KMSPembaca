@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Image, View}  from 'react-native';
+import {Text, SafeAreaView, View, FlatList}  from 'react-native';
 import { colors, colortext } from '../../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
@@ -11,6 +11,56 @@ import {
 import { BoxKonten, BoxKontenRiwayat } from '../../atoms';
 import { Kelapa, Chart, Petani } from '../../../assets';
 
+const DATA = [
+    {
+        id: '1',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    },
+    {
+        id: '2',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    },
+    {
+        id: '3',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    },
+    {
+        id: '4',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    },
+    {
+        id: '5',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    },
+    {
+        id: '6',
+        kategori:"Artikel",
+        title:"Artikel",
+        img:Kelapa,
+        screenName:'',
+        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+    }
+]
 const BoxRiwayat = ({title,img, onPress}) => {
     return (
         <View>
@@ -18,11 +68,21 @@ const BoxRiwayat = ({title,img, onPress}) => {
             <Text style={styles.text}>Riwayat</Text>
             <Text style={styles.textlain} onPress={onPress}>Lainnya</Text>
         </View>
-        <View style={styles.wrapper}>
-            <BoxKontenRiwayat kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
-            <BoxKontenRiwayat kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
-            <BoxKontenRiwayat kategori="Artikel" title="Artikel" img={Kelapa} isi='Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'/>
-        </View>
+        <SafeAreaView style={styles.wrapper}>
+            <FlatList
+                    showsVerticalScrollIndicator={false}
+                    data={DATA}
+                    renderItem={({item}) => 
+                    <BoxKontenRiwayat  kategori={item.kategori} 
+                                konten={item.konten} 
+                                title={item.title} 
+                                img={item.img} 
+                                isi={item.isi}
+                                onPress={()=> handleGoTo(item.screenName)}
+                                />}
+                    keyExtractor={item => item.id}
+                />
+        </SafeAreaView>
         </View>
     
         

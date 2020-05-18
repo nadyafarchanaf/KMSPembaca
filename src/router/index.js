@@ -30,7 +30,7 @@ const Router = () => {
             <Stack.Screen name="NavigationBar" component={NavigationBar} options={{headerShown:false}}/>
             <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
             <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
-            <Stack.Screen name="Home" component={Home} options={{headerShown:false}}/>
+            <Stack.Screen name="Beranda" component={Home} options={{headerShown:false}}/>
             <Stack.Screen name="Notifikasi" component={DaftarNotifikasi}/>
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>

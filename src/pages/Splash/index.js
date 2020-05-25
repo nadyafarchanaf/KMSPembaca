@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {View, Text, Image} from 'react-native';
 import { colors } from '../../utils';
 import { Logo } from '../../assets';
@@ -8,13 +8,28 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Splash = ({navigation}) => {
+    
+    const detectLogin = async() => {
+        const token = await AsyncStorage.getItem('userToken')
+        if(token){
+            navigation.replace('KMS Sawit')
+        }else{
+            navigation.replace('WelcomePage1')
+        }
+    }
     useEffect (()=> {
-        setTimeout(() => {
-                navigation.replace('KMS Sawit');
+        setTimeout(async() => {
+            const token = await AsyncStorage.getItem('userToken')
+            if(token){
+                navigation.replace('KMS Sawit')
+            }else{
+                navigation.replace('WelcomePage1')
+            }
         }, 2000);
-    });
+    }, []);
     return (
         <View style={{position:'relative'}}>
         <View style={styles.boxlogo}>

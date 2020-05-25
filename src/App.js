@@ -24,13 +24,7 @@ import { WelcomePage1, NavigationBar } from './pages';
 import deviceStorage from './service/deviceStorage';
 
 const App = () => {
-  const [signedIn, setSignedIn]=useState(false);
-  useEffect(() => {
-    deviceStorage.isSignedIn('userToken')
-      .then(res => {setSignedIn(res !== null) })
-      .catch(err => alert("An error occurred"));
-  })
-  if (signedIn) {
+ 
     return (
       <Provider store={store}>
       <NavigationContainer>
@@ -38,15 +32,6 @@ const App = () => {
       </NavigationContainer>
     </Provider>
     );
-  } else {
-    return (
-      <Provider store={store}>
-      <NavigationContainer>
-        <Router/>
-      </NavigationContainer>
-    </Provider>
-    );
-  }
 };
 
 const styles = StyleSheet.create({

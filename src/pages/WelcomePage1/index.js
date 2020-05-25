@@ -13,7 +13,7 @@ import {
 
 const WelcomePage1 = ({navigation}) => {
     const handleGoTo = screen => {
-        navigation.navigate(screen);
+        navigation.replace(screen);
     };
     return (
         <View style={styles}>

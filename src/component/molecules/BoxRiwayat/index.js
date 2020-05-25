@@ -90,30 +90,13 @@ const BoxRiwayat = ({title,img, onPress}) => {
 }
 
 const styles = {
-    wrapper: {
-        position: 'relative',
-        marginHorizontal: 14,
-        marginBottom:10,
-        paddingBottom:15,
-        borderRadius: 20,
-        backgroundColor: colors.white2,
-        shadowColor: "#000",
-        shadowOffset: {
-            width: 0,
-            height: 10,
-        },
-        shadowOpacity: 0.02,
-        shadowRadius: 10,
-        elevation: 2
-    },
     text:{
         fontFamily: 'Nunito',
         fontWeight: 'bold',
         fontSize: 15,
         lineHeight: 20,
         color: colors.red,
-        marginLeft: 24,
-        marginBottom:8
+        marginLeft: 12,
     },
     textlain:{
         fontFamily: 'Nunito',

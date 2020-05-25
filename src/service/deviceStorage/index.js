@@ -5,7 +5,7 @@ import { Alert } from "react-native";
 const deviceStorage =  {
         async onSignIn(key, value) {
         try {
-         await AsyncStorage.setItem(key, value)
+          await AsyncStorage.setItem(key, value)
         } catch (error) {
           console.log('AsyncStorage Error: ' + error.message);
         }
@@ -13,6 +13,7 @@ const deviceStorage =  {
       async isSignedIn(key) {
           try { 
             await AsyncStorage.getItem(key)
+            
           }
             catch (error) { 
               console.log('AsyncStorage Error: ' + error.message);

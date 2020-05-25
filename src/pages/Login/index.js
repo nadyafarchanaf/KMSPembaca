@@ -28,19 +28,20 @@ const Login = ({navigation}) => {
             },
             body: JSON.stringify(form)
         })
-        .then((response) => response.text())
-        .then((responseJson) => {
-            console.log(responseJson)
-            deviceStorage.onSignIn("userToken", responseJson.access_token)
+        .then((response) => response.json())
+        .then(async (data)=> {
+            try {
+                const value = JSON.stringify(data.access_token)
+                await AsyncStorage.setItem('userToken', value)
+                navigation.replace(screen)
+            } catch (err) {
+                console.log('AsyncStorage Error: ' + error.message);
+            }
         })
-        .catch((error) => {
-            console.error(error);
-        });
-        console.log('kirim data', form);
-        navigation.replace(screen);
+        console.log('kirim data', form)
     };
     const handleGoTo = screen => {
-        navigation.navigate(screen);
+        navigation.replace(screen);
     };
     return (
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
@@ -53,7 +54,7 @@ const Login = ({navigation}) => {
                     onChangeText={value=>onInputChange(value, 'password')}
                     secureTextEntry={true}/>
             </View>
-            <ActionButton title="Masuk" onPress={() => sendData('NavigationBar')}/>
+            <ActionButton title="Masuk" onPress={() => sendData('KMS Sawit')}/>
             <View style={styles.wrapper}>
                 <Text>Belum memiliki akun?</Text>
                 <Text style={styles.textbutton} onPress={() => handleGoTo('Register')}> Buat akun</Text>

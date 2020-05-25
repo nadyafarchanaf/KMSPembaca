@@ -27,6 +27,7 @@ const DaftarNotifikasi = ({jumlah,notif}) => {
                                     />  
                 }
                 keyExtractor={item => item.id}
+                enableEmptySections={true}
             />
         </SafeAreaView>
     )

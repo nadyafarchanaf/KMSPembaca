@@ -22,8 +22,7 @@ const styles = {
         flex: 1, 
         justifyContent: 'space-around', 
         flexDirection: "row",
-        marginHorizontal : 10,
-        marginBottom: 15
+        marginBottom: 10
     },
     text:{
         fontFamily: 'Nunito',
@@ -31,7 +30,7 @@ const styles = {
         fontSize: 15,
         lineHeight: 20,
         color: colors.red,
-        marginLeft: 24,
+        marginLeft: 12,
         marginBottom:8
     }
 }

@@ -5,9 +5,11 @@ import { NavigasiBar } from '../../component/molecules';
 import { ProfilBeranda, ActionButton } from '../../component/atoms';
 import { PakarMale } from '../../assets';
 import deviceStorage from '../../service/deviceStorage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Profil = ({navigation}) => {
-    const handleGoTo = screen => {
+    const handleGoTo = async (screen) => {
+        const data = await AsyncStorage.removeItem('userToken')
         fetch(`http://117.53.47.76/kms_backend/public/api/logout`,
         {
             method:"POST",
@@ -16,15 +18,10 @@ const Profil = ({navigation}) => {
                 'Content-Type': 'application/json'
             },
         })
-        .then((response) => response.json())
-        .then((responseJson) => {
-          console.log(responseJson)
-          deviceStorage.onSignOut('userToken')
+        .then(() => {
+            navigation.replace(screen)
         })
-        .catch((error) => {
-          console.error(error);
-        });
-        navigation.replace(screen);
+        
     };
     return(
         <View>
@@ -32,7 +29,7 @@ const Profil = ({navigation}) => {
                 <View style={{marginTop:15}}>
                     <ProfilBeranda img={PakarMale} role="Pakar" fullName="Nadya Farchana Fidaroina"/>
                 </View>
-                <ActionButton onPress={()=> handleGoTo('Login')} title="Keluar"/>
+                <ActionButton onPress={()=> handleGoTo('WelcomePage1')} title="Keluar"/>
             </ScrollView>
         </View>
     )

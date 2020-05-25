@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, SafeAreaView } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBox, WhiteButton, BoxKonten } from '../../component/atoms';
+import { SearchBox, WhiteButton,  BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
+import { colors } from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const DATA = [
     {
@@ -18,21 +20,46 @@ const DaftarVideo = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
+    const [data, setData] = useState();
+    const getData = async () => {
+        const token = await AsyncStorage.getItem('userToken')
+        const userToken = JSON.parse(token)
+        console.log(userToken)           
+        fetch(`http://117.53.47.76/kms_backend/public/api/konten/video_audio `,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            console.log(responseJson)
+            setData(responseJson.konten)
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+    useEffect(()=> {
+        getData()
+    }, [])
     return (
-        <SafeAreaView>
+        <SafeAreaView style={{backgroundColor:colors.white1, flex:1}}>
             <SearchBox/>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={DATA}
+                data={data}
                 renderItem={({item}) => 
-                <BoxKonten  kategori={item.kategori} 
-                            konten={item.konten} 
-                            title={item.title} 
+                <BoxKontenVideo  kategori={item.tipe} 
+                            title={item.judul} 
                             img={item.img} 
-                            isi={item.isi}
+                            isi={item.konten.isi}
                             onPress={()=> handleGoTo(item.screenName)}
                             />}
                 keyExtractor={item => item.id}
+                enableEmptySections={true}
             />
         </SafeAreaView>
     )

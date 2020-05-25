@@ -1,2 +1,3 @@
 import deviceStorage from './deviceStorage';
-export {deviceStorage};
+import SearchFilterFunction from './Search';
+export {deviceStorage, SearchFilterFunction};

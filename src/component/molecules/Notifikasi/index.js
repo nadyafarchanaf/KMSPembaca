@@ -61,10 +61,10 @@ const styles = {
     wrapper: {
         position: 'relative',
         flexDirection: 'row',
-        marginHorizontal: 14,
+        marginHorizontal: 10,
         marginBottom:15,
         height:hp('13'),
-        borderRadius: 20,
+        borderRadius: 10,
         backgroundColor: colors.orange,
         shadowColor: "#000",
         shadowOffset: {

@@ -27,8 +27,8 @@ const styles = {
     card :{
         flexDirection: 'row',
         height: 47, 
-        marginHorizontal: 35, 
-        marginBottom: 25
+        marginHorizontal: 20, 
+        marginBottom: 15
     },
     input : {
         backgroundColor:colors.white1,

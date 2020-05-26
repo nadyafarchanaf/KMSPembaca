@@ -1,30 +1,21 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton,  BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
 import { colors } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const DATA = [
-    {
-        id: '1',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'Video',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    }
-]
 const DaftarVideo = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
+    const [loading, setLoading]= useState(true)
     const [data, setData] = useState();
+    const [arraydata, setArrayData]=useState([]);
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
-        const userToken = JSON.parse(token)
-        console.log(userToken)           
+        const userToken = JSON.parse(token)           
         fetch(`http://117.53.47.76/kms_backend/public/api/konten/video_audio `,
         {
             method:"GET",
@@ -34,8 +25,9 @@ const DaftarVideo = ({navigation}) => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
-            console.log(responseJson)
+            setLoading(false)
             setData(responseJson.konten)
+            setArrayData(responseJson.konten)
         }
         )
         .catch((error) => {
@@ -45,20 +37,41 @@ const DaftarVideo = ({navigation}) => {
     useEffect(()=> {
         getData()
     }, [])
+    const [value, setValue] = useState()
+    const searchFilterFunction = text => {
+        
+        setValue(text)
+        const newData = arraydata.filter(item => {
+          const itemData = `${item.judul.toUpperCase()} ${item.konten.map(value => value.isi).toString().toUpperCase()}`;
+          const textData = text.toUpperCase();
+    
+          return itemData.indexOf(textData) > -1;
+        });
+        setData (newData)
+      };
+    if (loading=== true) {
+        return (
+            <View style={{alignItems: 'center',
+            flex: 1,
+            justifyContent: 'center'}}>
+                <ActivityIndicator size="large" color={colors.red}/>
+            </View>
+        )
+    } 
     return (
         <SafeAreaView style={{backgroundColor:colors.white1, flex:1}}>
-            <SearchBox/>
+            <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({item}) => 
-                <BoxKontenVideo  kategori={item.tipe} 
+                <BoxKontenVideo  kategori="Video" 
                             title={item.judul} 
                             img={item.img} 
-                            isi={item.konten.isi}
-                            onPress={()=> handleGoTo(item.screenName)}
+                            isi={item.konten.map(value => value.isi)}
+                            onPress={()=> handleGoTo()}
                             />}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}
             />
         </SafeAreaView>

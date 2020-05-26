@@ -1,38 +1,19 @@
 import React, { useEffect, useState } from 'react';
-import { View, Text, FlatList, SafeAreaView } from 'react-native';
+import { View, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton } from '../../component/atoms';
 import { colors } from '../../utils';
 import deviceStorage from '../../service/deviceStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const DATA = [
-    {
-        id: '1',
-        title: "Pendahuluan terkait Kelapa Sawit",
-        screenName: 'Daftar Artikel'
-    },
-    {
-        id: '2',
-        title: "Pendahuluan terkait Kelapa Sawit",
-        screenName: 'Daftar Artikel'
-    },
-    {
-        id: '3',
-        title: "Pendahuluan terkait Kelapa Sawit",
-        screenName: 'Daftar Artikel'
-    },
-    {
-        id: '4',
-        title: "Pendahuluan terkait Kelapa Sawit",
-        screenName: 'Daftar Artikel'
-    }
-];
+
 const KategoriArtikel = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
+    const [loading, setLoading]=useState(true)
     const [data, setData] = useState();
+    const [arraydata, setArrayData]=useState([]);
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)          
@@ -45,7 +26,9 @@ const KategoriArtikel = ({navigation}) => {
         })
         .then((response) => response.json())
         .then((responseJson) => {
+            setLoading(false)
             setData(responseJson.konten)
+            setArrayData(responseJson.konten)
         }
         )
         .catch((error) => {
@@ -55,15 +38,37 @@ const KategoriArtikel = ({navigation}) => {
     useEffect(()=> {
         getData()
     }, [])
+    const [value, setValue] = useState()
+    const searchFilterFunction = text => {
+        
+        setValue(text)
+        const newData = arraydata.filter(item => {
+          const itemData = `${item.kategori.toUpperCase()}`;
+          const textData = text.toUpperCase();
+    
+          return itemData.indexOf(textData) > -1;
+        });
+        setData (newData)
+      };
+    if (loading===true) {
+            return (
+                <View style={{alignItems: 'center',
+                flex: 1,
+                justifyContent: 'center'}}>
+                    <ActivityIndicator size="large" color={colors.red}/>
+                </View>
+            )
+    }
     return (
+        
         <SafeAreaView style={{backgroundColor:colors.white1, flex:1}} >
-            <SearchBox/>
+            <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({item}) => 
                     <WhiteButton title={item.kategori} />}
-                keyExtractor={item=> item.id}
+                keyExtractor={item=> item.id.toString()}
                 enableEmptySections={true}
             />
         </SafeAreaView>

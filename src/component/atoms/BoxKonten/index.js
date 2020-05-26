@@ -19,7 +19,7 @@ const BoxKonten = ({title,img, isi, kategori, onPress}) => {
             <View style={{marginRight:5}}>
                 <Text style={styles.textkategori}>{kategori}</Text>
                 <Text style={styles.text}>{title}</Text>
-                <Text style={styles.textisi}>{isi}...</Text>
+                <Text style={styles.textisi}>{isi.slice(0,87)}...</Text>
             </View>
         </TouchableOpacity>
     

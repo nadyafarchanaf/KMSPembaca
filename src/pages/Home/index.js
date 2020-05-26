@@ -33,7 +33,6 @@ const Home = ({navigation}) => {
             <FlatList  showsVerticalScrollIndicator={false}
                 ListHeaderComponent= {
                     <>
-                    <ProfilBeranda img={PakarFemale} fullName="Nadya Farchana" role="Pakar"/>
                     <Notifikasi onPress={()=>handleGoTo('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature 
                     onPressArtikel={()=>handleGoTo('Kategori Artikel')} 

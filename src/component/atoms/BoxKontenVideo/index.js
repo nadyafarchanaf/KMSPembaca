@@ -13,10 +13,10 @@ const BoxKontenVideo = ({title,img, isi, kategori, onPress}) => {
     
     <TouchableOpacity style={styles.wrapper} activeOpacity={0.7} onPress={onPress}>
              
-            <View style={{marginRight:5}}>
+            <View>
                 <Text style={styles.textkategori}>{kategori}</Text>
                 <Text style={styles.text}>{title}</Text>
-                <Text style={styles.textisi}>{isi}</Text>
+                <Text style={styles.textisi}>sumber : {isi}</Text>
             </View>
         </TouchableOpacity>
     
@@ -28,10 +28,9 @@ const styles = {
     wrapper : {
         position: 'relative',
         flexDirection: 'row',
-        height:hp('13'),
         backgroundColor: colors.white1,
         borderBottomWidth:1,
-        borderColor: colors.gray4
+        borderColor: colors.gray4,
     },
     image : {
         height:hp('10'),
@@ -39,6 +38,7 @@ const styles = {
         margin: 10
     },
     text : {
+        marginHorizontal: 15, 
         color:colortext.black,
         fontSize: hp('2'), 
         fontFamily: 'Nunito', 
@@ -47,15 +47,16 @@ const styles = {
         textAlign: 'justify',
     },
     textisi: {
+        marginHorizontal: 15,
         color:colortext.black,
         fontSize: hp('1.9'), 
         fontFamily: 'Nunito', 
         fontWeight: '600', 
         textAlign: 'justify',
-        width:wp('73'),
         paddingBottom: 5
     },
     textkategori: {
+        marginHorizontal: 15,
         marginTop:6,
         color:colortext.black,
         fontSize: hp('1.9'), 

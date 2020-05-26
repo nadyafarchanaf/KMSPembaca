@@ -4,6 +4,7 @@ import { LoginTemplate } from '../../template';
 import { LoginInput, ActionButton  } from '../../component/atoms';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import deviceStorage from '../../service/deviceStorage';
+import AsyncStorage from '@react-native-community/async-storage';
 
 const Register = ({navigation}) => {
     const [form, setForm] = useState({
@@ -11,23 +12,6 @@ const Register = ({navigation}) => {
         email:'',
         password:'',
     });
-    // const insertForm = (form) => {
-    //     axios.post(`17.53.47.76/kms_backend/public/petani/register`,
-    //     {
-    //         form: {
-    //             nama: nama,
-    //             email:email,
-    //             password:password,
-    //         }
-    //     },)
-    //     .then((response) => {
-    //          // Handle the JWT response here
-    //          deviceStorage.saveKey("access_token", response.access_token)
-    //     })
-    //     .catch((error)=> {
-    //         // Handle returned errors here
-    //     })
-    // }
     const onInputChange = (value, input) => {
         setForm({
             ...form,

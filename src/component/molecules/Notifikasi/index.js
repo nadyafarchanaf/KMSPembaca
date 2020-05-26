@@ -62,7 +62,7 @@ const styles = {
         position: 'relative',
         flexDirection: 'row',
         marginHorizontal: 10,
-        marginBottom:15,
+        marginVertical:15,
         height:hp('13'),
         borderRadius: 10,
         backgroundColor: colors.orange,

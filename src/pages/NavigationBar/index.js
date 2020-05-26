@@ -13,7 +13,8 @@ const NavigationBar=()=> {
       initialRouteName="Home"
       tabBarOptions={{
         activeTintColor: colors.gray2,
-        inactiveTintColor: icons.icon
+        inactiveTintColor: icons.icon,
+        keyboardHidesTabBar:true
       }}
       backBehavior='none'
     >

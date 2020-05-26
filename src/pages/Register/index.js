@@ -19,6 +19,13 @@ const Register = ({navigation}) => {
         })
     }
     const sendData = screen => {
+        if (form.email==='') {
+            Alert.alert("Email tidak boleh kosong")
+        }
+        if (form.password==='') {
+            Alert.alert("Password tidak boleh kosong")
+        }
+        if (form.password!=='' && form.email!=='') {
         fetch(`http://117.53.47.76/kms_backend/public/api/petani/register`,
         {
             method:"POST",
@@ -38,6 +45,7 @@ const Register = ({navigation}) => {
                 console.log('AsyncStorage Error: ' + error.message);
             }
         })
+    }
     };
     const handleGoTo = screen => {
         navigation.replace(screen);

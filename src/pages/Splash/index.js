@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, StatusBar} from 'react-native';
 import { colors } from '../../utils';
 import { Logo } from '../../assets';
 import {
@@ -32,6 +32,7 @@ const Splash = ({navigation}) => {
     }, []);
     return (
         <View style={{position:'relative'}}>
+        <StatusBar barStyle="dark-content" backgroundColor='#fff' />
         <View style={styles.boxlogo}>
             <Image source={Logo} style={styles.logo}/>
         </View>

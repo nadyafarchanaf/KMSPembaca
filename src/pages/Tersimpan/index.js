@@ -91,8 +91,8 @@ const Tersimpan = () => {
         .then((response) => response.json())
         .then((responseJson) => {
             setLoading(false)
-            setData(responseJson.konten)
-            setArrayData(responseJson.konten)
+            setData(responseJson.bookmark)
+            setArrayData(responseJson.bookmark)
         }
         )
         .catch((error) => {

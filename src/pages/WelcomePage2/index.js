@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Image} from 'react-native';
+import {View, Text, Image, StatusBar} from 'react-native';
 import { colors } from '../../utils';
 import RedButton from '../../component/atoms/RedButton';
 import { Welcomepage2 } from '../../assets';
@@ -17,6 +17,7 @@ const WelcomePage2 = ({navigation}) => {
     };
     return (
         <View style={styles}>
+        <StatusBar barStyle="dark-content" backgroundColor='#f5f5f5' />
             <View style={styles.circle2}/>
             <View style={styles.wrapper}>
                     <Image source={Welcomepage2} style={styles.img}/>

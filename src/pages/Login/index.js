@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert, StatusBar} from 'react-native';
 import { LoginInput, ActionButton } from '../../component/atoms';
 import { LoginTemplate } from '../../template';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -19,6 +19,13 @@ const Login = ({navigation}) => {
         })
     }
     const sendData = screen => {
+        if (form.email==='') {
+            Alert.alert("Email tidak boleh kosong")
+        }
+        if (form.password==='') {
+            Alert.alert("Password tidak boleh kosong")
+        }
+        if (form.password!=='' && form.email!=='') {
         fetch(`http://117.53.47.76/kms_backend/public/api/login`,
         {
             method:"POST",
@@ -38,7 +45,7 @@ const Login = ({navigation}) => {
                 console.log('AsyncStorage Error: ' + error.message);
             }
         })
-        console.log('kirim data', form)
+    }
     };
     const handleGoTo = screen => {
         navigation.replace(screen);
@@ -46,6 +53,7 @@ const Login = ({navigation}) => {
     return (
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View>
+            <StatusBar barStyle="dark-content" backgroundColor='#f5f5f5' />
                 <LoginTemplate/>
                 <LoginInput placeholder="Email                                    " icon="email"
                     onChangeText={value=>onInputChange(value, 'email')}

@@ -137,7 +137,7 @@ const DaftarDokumen = ({navigation}) => {
                             konten={item.judul} 
                             title={item.judul} 
                             isi={item.konten.map(value => value.penerbit).toString()}
-                            onPress={()=> handleGoTo(item.screenName)}
+                            onPress={()=> handleGoTo('E-Dokumen', {})}
                             />}
                 keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}

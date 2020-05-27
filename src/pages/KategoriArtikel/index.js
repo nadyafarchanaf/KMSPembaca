@@ -3,7 +3,6 @@ import { View, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-nat
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton } from '../../component/atoms';
 import { colors } from '../../utils';
-import deviceStorage from '../../service/deviceStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 

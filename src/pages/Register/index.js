@@ -1,9 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import {View, Text} from 'react-native';
 import { LoginTemplate } from '../../template';
-import { LoginInput, ActionButton  } from '../../component/atoms';
+import { LoginInput, ActionButton, PasswordInput  } from '../../component/atoms';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import deviceStorage from '../../service/deviceStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Register = ({navigation}) => {
@@ -62,10 +61,9 @@ const Register = ({navigation}) => {
                     value={form.email}
                     onChangeText={value=>onInputChange(value, 'email')}
                 />
-                <LoginInput placeholder="Password                               " icon="lock"
+                <PasswordInput placeholder="Password                                  " icon="lock"
                     value={form.password}
                     onChangeText={value=>onInputChange(value, 'password')}
-                    secureTextEntry={true}
                 />
             </View>
             <ActionButton title="Daftar" onPress={() => sendData('KMS Sawit')}/>

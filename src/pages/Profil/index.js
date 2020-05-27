@@ -4,7 +4,6 @@ import { ScrollView } from 'react-native-gesture-handler';
 import { NavigasiBar } from '../../component/molecules';
 import { ProfilBeranda, ActionButton } from '../../component/atoms';
 import { PakarMale } from '../../assets';
-import deviceStorage from '../../service/deviceStorage';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Profil = ({navigation}) => {

@@ -12,4 +12,5 @@ import BoxKontenRiwayat from './BoxKontenRiwayat';
 import BookmarkButton from './BookmarkButton';
 import DownloadButton from './DownloadButton';
 import BoxKontenVideo from './BoxKontenVideo';
-export {BoxKontenVideo, DownloadButton, BoxKontenRiwayat, BookmarkButton, WhiteButton, SearchBox, ActionButton, BoxKonten, OrangeButton, RedButton, Konten, LoginInput, ImageCircle,ProfilBeranda};
+import PasswordInput from './PasswordInput';
+export {BoxKontenVideo, PasswordInput, DownloadButton, BoxKontenRiwayat, BookmarkButton, WhiteButton, SearchBox, ActionButton, BoxKonten, OrangeButton, RedButton, Konten, LoginInput, ImageCircle,ProfilBeranda};

@@ -21,7 +21,6 @@ import { Provider } from 'react-redux';
 import {store} from './redux';
 import { colors } from './utils';
 import { WelcomePage1, NavigationBar } from './pages';
-import deviceStorage from './service/deviceStorage';
 
 const App = () => {
  

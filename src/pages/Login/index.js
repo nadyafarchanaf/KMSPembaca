@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import {View, Text, Alert, StatusBar} from 'react-native';
-import { LoginInput, ActionButton } from '../../component/atoms';
+import { LoginInput, ActionButton, PasswordInput } from '../../component/atoms';
 import { LoginTemplate } from '../../template';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
 import { validasiLogin } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
-import deviceStorage from '../../service/deviceStorage';
 
 const Login = ({navigation}) => {
     const [form, setForm] = useState({
@@ -50,6 +49,7 @@ const Login = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.replace(screen);
     };
+    
     return (
         <KeyboardAwareScrollView showsVerticalScrollIndicator={false}>
             <View>
@@ -58,9 +58,9 @@ const Login = ({navigation}) => {
                 <LoginInput placeholder="Email                                    " icon="email"
                     onChangeText={value=>onInputChange(value, 'email')}
                 />
-                <LoginInput placeholder="Password                                 " icon="lock" 
+                <PasswordInput placeholder="Password                                 " icon="lock" 
                     onChangeText={value=>onInputChange(value, 'password')}
-                    secureTextEntry={true}/>
+                    />
             </View>
             <ActionButton title="Masuk" onPress={() => sendData('KMS Sawit')}/>
             <View style={styles.wrapper}>

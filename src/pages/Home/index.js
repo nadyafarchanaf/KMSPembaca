@@ -11,23 +11,6 @@ const Home = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
-    const getData = screen => {
-        fetch(`http://117.53.47.76/kms_backend/public/api/profil`,
-        {
-            method:"GET",
-            body: JSON.stringify(form)
-        })
-        .then((response) => response.text())
-        .then((responseJson) => {
-            console.log(responseJson)
-            deviceStorage.onSignIn("userToken", responseJson.access_token)
-        })
-        .catch((error) => {
-            console.error(error);
-        });
-        console.log('kirim data', form);
-        navigation.replace(screen);
-    };
     return (
         <View style={styles.wrapper}>
         <StatusBar barStyle="dark-content" backgroundColor='#fff' />

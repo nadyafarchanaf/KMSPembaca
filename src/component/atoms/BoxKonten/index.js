@@ -12,14 +12,10 @@ const BoxKonten = ({title,img, isi, kategori, onPress}) => {
     return (
     
     <TouchableOpacity style={styles.wrapper} activeOpacity={0.7} onPress={onPress}>
-        <View>
-                <Image source={img} style={styles.image}/>
-        </View>
-        
-            <View style={{marginRight:5}}>
+          <View style={{marginRight:5}}>
                 <Text style={styles.textkategori}>{kategori}</Text>
                 <Text style={styles.text}>{title}</Text>
-                <Text style={styles.textisi}>{isi.slice(0,87)}...</Text>
+                <Text style={styles.textisi}>{isi.slice(0,87)}</Text>
             </View>
         </TouchableOpacity>
     

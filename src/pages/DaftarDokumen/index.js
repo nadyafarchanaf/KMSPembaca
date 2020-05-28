@@ -6,71 +6,6 @@ import { Kelapa } from '../../assets';
 import { colors } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const DATA = [
-    {
-        id: '1',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'E-Dokumen',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-       
-      },
-      {
-        id: '2',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'E-Dokumen',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-      },
-      {
-        id: '3',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'E-Dokumen',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-      },
-      {
-          id: '4',
-          kategori:"Artikel",
-          title:"Artikel",
-          img:Kelapa,
-          screenName: 'E-Dokumen',
-          isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-        
-      },
-      {
-          id: '5',
-          kategori:"Artikel",
-          title:"Artikel",
-          img:Kelapa,
-          screenName: 'E-Dokumen',
-          isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-        
-      },
-      {
-          id: '6',
-          kategori:"Artikel",
-          title:"Artikel",
-          img:Kelapa,
-          screenName: 'E-Dokumen',
-          isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-        
-      },
-      {
-          id: '7',
-          kategori:"Artikel",
-          title:"Artikel",
-          img:Kelapa,
-          screenName: 'E-Dokumen',
-          isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-        
-      },
-]
 const DaftarDokumen = ({navigation}) => {
     const [loading, setLoading]=useState(true)
     const [data, setData] = useState();
@@ -139,7 +74,6 @@ const DaftarDokumen = ({navigation}) => {
                                 penulis: item.konten.map(value => value.penulis),
                                 tahun: item.konten.map(value => value.tahun),
                                 penerbit: item.konten.map(value => value.penerbit),
-                                isbn: item.konten.map(value => value.isbn),
                                 bahasa: item.konten.map(value => value.bahasa),
                                 halaman: item.konten.map(value => value.halaman),
                                 deskripsi: item.konten.map(value => value.deskripsi),

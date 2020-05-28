@@ -39,8 +39,8 @@ const Router = () => {
             <Stack.Screen name="Daftar Video" component={DaftarVideo}/>
             <Stack.Screen name="Daftar E-Dokumen" component={DaftarDokumen}/>
             <Stack.Screen name="Daftar Artikel" component={DaftarArtikel}/>
-            <Stack.Screen name="Video" component={PageVideo}/>
-            <Stack.Screen name= 'E-Dokumen' component={PageDokumen}/>
+            <Stack.Screen name="VideoAudio" component={PageVideo}/>
+            <Stack.Screen name= 'EDokumen' component={PageDokumen}/>
             <Stack.Screen name= 'Artikel' component={PageArtikel}/>
         </Stack.Navigator>
     );

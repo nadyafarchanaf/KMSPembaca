@@ -1,77 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
-import { SearchBox, WhiteButton, BoxKonten } from '../../component/atoms';
+import { SearchBox, WhiteButton, BoxKonten, BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
 import { colors } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 
-const DATA = [
-    {
-      id: '1',
-      kategori:"Artikel",
-      title:"Artikel",
-      img:Kelapa,
-      screenName: 'Artikel',
-      isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-     
-    },
-    {
-      id: '2',
-      kategori:"Artikel",
-      title:"Artikel",
-      img:Kelapa,
-      screenName: '',
-      isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-    
-    },
-    {
-      id: '3',
-      kategori:"Artikel",
-      title:"Artikel",
-      img:Kelapa,
-      screenName: '',
-      isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-    
-    },
-    {
-        id: '4',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: '',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-    },
-    {
-        id: '5',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: '',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-    },
-    {
-        id: '6',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'Artikel',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-    },
-    {
-        id: '7',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName: 'Artikel',
-        isi:'Budidaya Kelapa Sawit oleh Antara Darma 13 Mei 2020 Cara tanam kelapa sawit yang benar akan mempengaruhi kualitas tanaman sawit dan mempengaruhi buah yang akan dihasilkan. Mungkin beberapa petani sawit masih ada yang menanam kelapa sawit secara sembarangan dan tidak begitu memperhatikan teknik menanam yang baik dan benar. Sehingga terkadang hal itulah yang menjadi penyebab kenapa pohon kelapa sawit yang sedang ditanam tidak '
-      
-    },
-  ];
-const Tersimpan = () => {
+const Tersimpan = ({navigation}) => {
     const handleGoTo = screen => {
         navigation.navigate(screen);
     };
@@ -81,7 +16,7 @@ const Tersimpan = () => {
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)          
-        fetch(`http://117.53.47.76/kms_backend/public/api/petani/bookmark`,
+        fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark`,
         {
             method:"GET",
             headers: new Headers ( {
@@ -107,7 +42,7 @@ const Tersimpan = () => {
         
         setValue(text)
         const newData = arraydata.filter(item => {
-          const itemData = `${item.kategori.toUpperCase()}`;
+          const itemData = `${item.judul.toUpperCase()} ${item.penulis.map(value => value.nama).toString().toUpperCase()} ${item.tipe.toUpperCase()}`;
           const textData = text.toUpperCase();
     
           return itemData.indexOf(textData) > -1;
@@ -133,14 +68,12 @@ const Tersimpan = () => {
                     <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
                     </> }
                 renderItem={({item}) => 
-                <BoxKonten  kategori={item.kategori} 
-                            konten={item.konten} 
-                            title={item.title} 
-                            img={item.img} 
-                            isi={item.isi}
-                            onPress={()=> handleGoTo(item.screenName)}
+                <BoxKontenVideo  kategori={item.tipe} 
+                            title={item.judul} 
+                            isi={item.penulis.map(value=>value.nama)}
+                            onPress={()=> navigation.navigate(item.tipe.toString(), {})}
                             />}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
             />
             </SafeAreaView>
     )

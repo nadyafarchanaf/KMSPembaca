@@ -1,9 +1,6 @@
 import React, { useState, useEffect } from 'react';
-import { View, Text, ActivityIndicator } from 'react-native';
-import { ScrollView } from 'react-native-gesture-handler';
-import { NavigasiBar } from '../../component/molecules';
+import { View, Text, ActivityIndicator, SafeAreaView, FlatList } from 'react-native';
 import { ProfilBeranda, ActionButton } from '../../component/atoms';
-import { PakarMale } from '../../assets';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Profil = ({navigation}) => {
@@ -43,9 +40,10 @@ const Profil = ({navigation}) => {
         .catch((error) => {
             console.error(error);
         });
-        useEffect={}
-        
     };
+    useEffect(()=> {
+        profil()
+    },[])
     if (loading=== true) {
         return (
             <View style={{alignItems: 'center',
@@ -56,14 +54,17 @@ const Profil = ({navigation}) => {
         )
     } 
     return(
-        <View>
-            <ScrollView>
-                <View style={{marginTop:15}}>
-                    <ProfilBeranda img={PakarMale} role={data.peran} fullName={data.nama} email={data.email}/>
-                </View>
+        <SafeAreaView>
+            <FlatList
+                showsVerticalScrollIndicator={false}
+                data={data}
+                renderItem={({item}) => 
+                    <ProfilBeranda role={item.peran} fullName={item.nama} email={item.email}/>
+                }
+                keyExtractor={item => item.id.toString()}
+            />
                 <ActionButton onPress={()=> handleGoTo('WelcomePage1')} title="Keluar"/>
-            </ScrollView>
-        </View>
+        </SafeAreaView>
     )
 };
 export default Profil;

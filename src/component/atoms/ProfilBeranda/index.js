@@ -10,7 +10,7 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
    
-const ProfilBeranda=({fullName, role, img})=> {
+const ProfilBeranda=({fullName, role, img, email})=> {
     return (
         <View style={{flexDirection:'row'}}>
             <ImageCircle img={Petani}/>

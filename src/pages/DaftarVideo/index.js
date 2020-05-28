@@ -16,7 +16,7 @@ const DaftarVideo = ({navigation}) => {
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)           
-        fetch(`http://117.53.47.76/kms_backend/public/api/konten/video_audio `,
+        fetch(`http://117.53.47.76/kms_backend/public/api/konten/video `,
         {
             method:"GET",
             headers: new Headers ( {
@@ -69,7 +69,7 @@ const DaftarVideo = ({navigation}) => {
                             title={item.judul} 
                             img={item.img} 
                             isi={item.konten.map(value => value.isi)}
-                            onPress={()=> navigation.navigate('Video', {
+                            onPress={()=> navigation.navigate('VideoAudio', {
                                 itemSumber: item.konten.map(value => value.isi), 
                                 itemVideo: item.konten.map(value => value.video_audio),
                                 itemJudul:item.judul,})}

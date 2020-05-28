@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, Alert} from 'react-native';
 import { LoginTemplate } from '../../template';
 import { LoginInput, ActionButton, PasswordInput  } from '../../component/atoms';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
@@ -18,6 +18,9 @@ const Register = ({navigation}) => {
         })
     }
     const sendData = screen => {
+        if (form.nama==='') {
+            Alert.alert("Nama tidak boleh kosong")
+        }
         if (form.email==='') {
             Alert.alert("Email tidak boleh kosong")
         }
@@ -39,6 +42,7 @@ const Register = ({navigation}) => {
             try {
                 const value = JSON.stringify(data.access_token)
                 await AsyncStorage.setItem('userToken', value)
+                console.log(data)
                 navigation.replace(screen)
             } catch (err) {
                 console.log('AsyncStorage Error: ' + error.message);

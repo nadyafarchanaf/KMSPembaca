@@ -65,7 +65,7 @@ const BoxRiwayat = ({title,img, onPress}) => {
     return (
         <View>
             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-            <Text style={styles.text}>Riwayat</Text>
+            <Text style={styles.text}>Konten Terbaru</Text>
             <Text style={styles.textlain} onPress={onPress}>Lainnya</Text>
         </View>
         <SafeAreaView style={styles.wrapper}>

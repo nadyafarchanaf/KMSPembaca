@@ -69,7 +69,10 @@ const DaftarVideo = ({navigation}) => {
                             title={item.judul} 
                             img={item.img} 
                             isi={item.konten.map(value => value.isi)}
-                            onPress={()=> handleGoTo()}
+                            onPress={()=> navigation.navigate('Video', {
+                                itemSumber: item.konten.map(value => value.isi), 
+                                itemVideo: item.konten.map(value => value.video_audio),
+                                itemJudul:item.judul,})}
                             />}
                 keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}

@@ -11,7 +11,7 @@ const KategoriArtikel = ({navigation}) => {
         navigation.navigate(screen);
     };
     const [loading, setLoading]=useState(true)
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [arraydata, setArrayData]=useState([]);
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
@@ -33,6 +33,7 @@ const KategoriArtikel = ({navigation}) => {
         .catch((error) => {
             console.error(error);
         });
+       
     }
     useEffect(()=> {
         getData()
@@ -49,7 +50,8 @@ const KategoriArtikel = ({navigation}) => {
         });
         setData (newData)
       };
-    if (loading===true) {
+      
+      if (loading===true) {
             return (
                 <View style={{alignItems: 'center',
                 flex: 1,
@@ -66,7 +68,8 @@ const KategoriArtikel = ({navigation}) => {
                 showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({item}) => 
-                    <WhiteButton title={item.kategori} />}
+                    <WhiteButton title={item.kategori} onPress={()=> handleGoTo('Daftar Artikel', {itemId: item.id,
+              otherParam:item.title,})}/>}
                 keyExtractor={item=> item.id.toString()}
                 enableEmptySections={true}
             />

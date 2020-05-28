@@ -72,9 +72,6 @@ const DATA = [
       },
 ]
 const DaftarDokumen = ({navigation}) => {
-    const handleGoTo = screen => {
-        navigation.navigate(screen);
-    };
     const [loading, setLoading]=useState(true)
     const [data, setData] = useState();
     const [arraydata, setArrayData]=useState([]);
@@ -137,7 +134,17 @@ const DaftarDokumen = ({navigation}) => {
                             konten={item.judul} 
                             title={item.judul} 
                             isi={item.konten.map(value => value.penerbit).toString()}
-                            onPress={()=> handleGoTo('E-Dokumen', {})}
+                            onPress={()=> navigation.navigate('E-Dokumen', {
+                                judul:item.judul,
+                                penulis: item.konten.map(value => value.penulis),
+                                tahun: item.konten.map(value => value.tahun),
+                                penerbit: item.konten.map(value => value.penerbit),
+                                isbn: item.konten.map(value => value.isbn),
+                                bahasa: item.konten.map(value => value.bahasa),
+                                halaman: item.konten.map(value => value.halaman),
+                                deskripsi: item.konten.map(value => value.deskripsi),
+                                file:item.konten.map(value => value.file)
+                                 })}
                             />}
                 keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}

@@ -5,23 +5,24 @@ import {
   widthPercentageToDP as wp,
   heightPercentageToDP as hp,
   listenOrientationChange as loc,
-  removeOrientationListener as rol
+  removeOrientationListener as rol,
+  widthPercentageToDP
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
-import { colors, icons } from '../../utils';
+import { colors, icons, colortext } from '../../utils';
 import { TouchableHighlight } from 'react-native-gesture-handler';
 import { BookmarkButton } from '../../component/atoms';
-const PageVideo = ({videoId, title}) => {
+function PageVideo  ({videoId, title, route})  {
   const [isReady, setIsReady]= useState(false);
   const [status, setStatus]= useState();
   const [quality, setQuality] = useState();
   const [error, setError] = useState();
-  const [icon, setIcon] = useState(0);
+  const {itemVideo, itemSumber, itemJudul} = route.params;
     return (
       <View style={styles.container}>
         <YouTube
         apiKey="AIzaSyBa_gh3C-qpXu3IwK1c503-2vvFtPeKsvM"
-        videoId="DjuuWiuQh4k" // The YouTube video ID
+        videoId={itemVideo.toString()} // The YouTube video ID
         play // control playback of video with true/false
         fullscreen={false} // video should play in fullscreen or inline
         loop={false} // control whether the video should loop when ended
@@ -32,11 +33,10 @@ const PageVideo = ({videoId, title}) => {
         style={styles.youtube}
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={styles.title}>Judul dummy gitu ceritanya{title}</Text>        
+          <Text style={styles.title}>{itemJudul}</Text>        
           <BookmarkButton/>
         </View>
-        <Text> oleh Admin</Text>
-        <Text>Detail</Text>
+        <Text style={styles.sumber}>Sumber video channel youtube : {itemSumber}</Text>
       </View>
       
     );
@@ -56,8 +56,17 @@ const styles = StyleSheet.create({
       fontSize: 16,
       textAlign: 'justify',
       textTransform: 'capitalize',
-      marginHorizontal: 15,
-      marginTop: 10
+      marginLeft: 10,
+      marginTop: 10,
+      width:wp(85)
+    },
+    sumber : {
+      fontFamily: 'Nunito',
+      fontWeight: '400',
+      fontSize: 14,
+      textAlign: 'justify',
+      marginHorizontal: 10,
+      color:colortext.gray
     }
 });
 export default PageVideo;

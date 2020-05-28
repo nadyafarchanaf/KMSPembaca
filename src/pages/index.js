@@ -8,7 +8,6 @@ import Home from './Home';
 import DaftarNotifikasi from './DaftarNotifikasi';
 import Tersimpan from './Tersimpan';
 import Profil from './Profil';
-import Riwayat from './Riwayat';
 import KategoriArtikel from './KategoriArtikel';
 import DaftarArtikel from './DaftarArtikel';
 import DaftarVideo from './DaftarVideo';
@@ -25,7 +24,6 @@ export {
     DaftarArtikel,
     DaftarVideo,
     KategoriArtikel,
-    Riwayat, 
     Splash, 
     Login, 
     Register, 

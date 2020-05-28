@@ -65,20 +65,10 @@ const DaftarDokumen = ({navigation}) => {
                     <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
                 }
                 renderItem={({item}) => 
-                <BoxKontenVideo  kategori='E-Dokumen' 
-                            konten={item.judul} 
+                <BoxKontenVideo  kategori={item.tipe}
                             title={item.judul} 
                             isi={item.konten.map(value => value.penerbit).toString()}
-                            onPress={()=> navigation.navigate('E-Dokumen', {
-                                judul:item.judul,
-                                penulis: item.konten.map(value => value.penulis),
-                                tahun: item.konten.map(value => value.tahun),
-                                penerbit: item.konten.map(value => value.penerbit),
-                                bahasa: item.konten.map(value => value.bahasa),
-                                halaman: item.konten.map(value => value.halaman),
-                                deskripsi: item.konten.map(value => value.deskripsi),
-                                file:item.konten.map(value => value.file)
-                                 })}
+                            onPress={()=> navigation.navigate('EDokumen', {id:item.id})}
                             />}
                 keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}

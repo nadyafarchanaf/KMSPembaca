@@ -65,14 +65,11 @@ const DaftarVideo = ({navigation}) => {
                 showsVerticalScrollIndicator={false}
                 data={data}
                 renderItem={({item}) => 
-                <BoxKontenVideo  kategori="Video" 
+                <BoxKontenVideo  kategori={item.tipe} 
                             title={item.judul} 
                             img={item.img} 
                             isi={item.konten.map(value => value.isi)}
-                            onPress={()=> navigation.navigate('VideoAudio', {
-                                itemSumber: item.konten.map(value => value.isi), 
-                                itemVideo: item.konten.map(value => value.video_audio),
-                                itemJudul:item.judul,})}
+                            onPress={()=> navigation.navigate('Video', { id:item.id})}
                             />}
                 keyExtractor={item => item.id.toString()}
                 enableEmptySections={true}

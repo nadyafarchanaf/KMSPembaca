@@ -7,9 +7,6 @@ import { colors } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Tersimpan = ({navigation}) => {
-    const handleGoTo = screen => {
-        navigation.navigate(screen);
-    };
     const [loading, setLoading]=useState(true)
     const [data, setData] = useState();
     const [arraydata, setArrayData]=useState([]);
@@ -39,7 +36,6 @@ const Tersimpan = ({navigation}) => {
     }, [])
     const [value, setValue] = useState()
     const searchFilterFunction = text => {
-        
         setValue(text)
         const newData = arraydata.filter(item => {
           const itemData = `${item.judul.toUpperCase()} ${item.penulis.map(value => value.nama).toString().toUpperCase()} ${item.tipe.toUpperCase()}`;
@@ -71,7 +67,7 @@ const Tersimpan = ({navigation}) => {
                 <BoxKontenVideo  kategori={item.tipe} 
                             title={item.judul} 
                             isi={item.penulis.map(value=>value.nama)}
-                            onPress={()=> navigation.navigate(item.tipe.toString(), {})}
+                            onPress={()=> navigation.navigate(item.tipe.toString(), {id:item.konten_id})}
                             />}
                 keyExtractor={item => item.id.toString()}
             />

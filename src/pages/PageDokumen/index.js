@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Image, Text} from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Image, Text, ActivityIndicator, SafeAreaView} from 'react-native';
 import DownloadLButton from '../../component/atoms/DownloadButton';
 import {
     widthPercentageToDP as wp,
@@ -8,49 +8,68 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 import { Kelapa } from '../../assets';
-import { ScrollView } from 'react-native-gesture-handler';
+import { ScrollView, FlatList } from 'react-native-gesture-handler';
 import { colors } from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
+import { DokumenPage } from '../../template';
 const PageDokumen = ({route}) => {
-    const {judul, penulis, tahun, penerbit, bahasa, halaman, deskripsi, file} = route.params;  
+const {id} = route.params;
+const [data, setData] = useState();
+const [loading,setLoading]= useState(true)
+const getData = async () => {
+const token = await AsyncStorage.getItem('userToken')
+const userToken = JSON.parse(token)          
+    fetch(`http://117.53.47.76/kms_backend/public/api/konten/show/${id}`,
+    {
+        method:"GET",
+        headers: new Headers ( {
+            Authorization : 'Bearer ' + userToken
+        })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        setLoading(false)
+        setData(responseJson.konten)
+        console.log(responseJson.konten)
+    }
+    )
+    .catch((error) => {
+        console.error(error);
+    });
+}
+useEffect(()=> {
+    getData()
+}, [])
+if (loading===true) {
+  return (
+      <View style={{alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center'}}>
+          <ActivityIndicator size="large" color={colors.red}/>
+      </View>
+  )
+} 
     return (
-          <ScrollView> 
-          <View style={styles.wrapper}>
-            <View style={{flexDirection:'row'}}>
-            <View style={{flexDirection: 'column'}}>
-                <Image source={Kelapa} style={styles.image}/>
-            </View>
-                <View style={{flexDirection:'column', marginVertical:10}}>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Judul      : </Text>
-                        <Text style={styles.isi}>{judul}</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Penulis  : </Text>
-                        <Text style={styles.isi}>{penulis}</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Tahun     : </Text>
-                        <Text style={styles.isi}>{tahun}</Text>
-                    </View>
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Penerbit : </Text>
-                        <Text style={styles.isi}>{penerbit}</Text>
-                    </View>                  
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Bahasa   : </Text>
-                        <Text style={styles.isi}>{bahasa}</Text>
-                    </View> 
-                    <View style={{flexDirection:'row'}}>
-                        <Text style={{fontWeight:'500',}}>Halaman : </Text>
-                        <Text style={styles.isi}>{halaman}</Text>
-                    </View>
-                </View>
-            </View>
-          </View>
-            <DownloadLButton url={file.toString()}/>
-            <Text style={styles.Ringkasan}>Ringkasan : </Text>
-            <Text style={styles.ringkasanisi}>{deskripsi}</Text>
-          </ScrollView>
+          <SafeAreaView>
+              <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={data}
+                  renderItem={({item}) => 
+                  <DokumenPage
+                    judul={item.judul}
+                    penulis= {item.konten.map(value => value.penulis)}
+                    tahun= {item.konten.map(value => value.tahun)}
+                    penerbit= {item.konten.map(value => value.penerbit)}
+                    bahasa= {item.konten.map(value => value.bahasa)}
+                    halaman= {item.konten.map(value => value.halaman)}
+                    deskripsi= {item.konten.map(value => value.deskripsi)}
+                    file={item.konten.map(value => value.file)}
+                  />
+                  }
+                  keyExtractor={item => item.id.toString()}
+                    enableEmptySections={true}
+              />
+          </SafeAreaView>
       )
 }
 const styles = {

@@ -32,11 +32,6 @@ const styles = {
         borderBottomWidth:1,
         borderColor: colors.gray4,
     },
-    image : {
-        height:hp('10'),
-        width:wp('19'),
-        margin: 10
-    },
     text : {
         marginHorizontal: 15, 
         color:colortext.black,

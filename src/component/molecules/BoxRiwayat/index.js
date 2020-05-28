@@ -1,5 +1,5 @@
-import React from 'react';
-import {Text, SafeAreaView, View, FlatList}  from 'react-native';
+import React, { useState, useEffect } from 'react';
+import {Text, SafeAreaView, View, FlatList, ActivityIndicator}  from 'react-native';
 import { colors, colortext } from '../../../utils';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import {
@@ -8,79 +8,54 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-import { BoxKonten, BoxKontenRiwayat } from '../../atoms';
+import { BoxKontenRiwayat } from '../../atoms';
 import { Kelapa, Chart, Petani } from '../../../assets';
+import AsyncStorage from '@react-native-community/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
 
-const DATA = [
-    {
-        id: '1',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    },
-    {
-        id: '2',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    },
-    {
-        id: '3',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    },
-    {
-        id: '4',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    },
-    {
-        id: '5',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
-    },
-    {
-        id: '6',
-        kategori:"Artikel",
-        title:"Artikel",
-        img:Kelapa,
-        screenName:'',
-        isi:'Aku ingin mencintaimu dengan sederahana dengan kat ayang Aku ingin mencintaimu dengan sederahana dengan kat ayang tak sempat disampaikan kayu kepada api yang menjadikannya abu'
+const BoxRiwayat = ({navigation, onPress, onPressLain}) => {
+    const [data, setData] = useState();
+    const getData = async () => {
+        const token = await AsyncStorage.getItem('userToken')
+        const userToken = JSON.parse(token)          
+        fetch(`http://117.53.47.76/kms_backend/public/api/pakar/riwayat`,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setData(responseJson.bookmark)
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
     }
-]
-const BoxRiwayat = ({title,img, onPress}) => {
+    useEffect(()=> {
+        getData()
+    }, [])
     return (
         <View>
             <View style={{flexDirection:'row', justifyContent:'space-between'}}>
-            <Text style={styles.text}>Konten Terbaru</Text>
-            <Text style={styles.textlain} onPress={onPress}>Lainnya</Text>
+            <Text style={styles.text}>Riwayat</Text>
+            <Text style={styles.textlain} onPressLain={onPress}>Lainnya</Text>
         </View>
         <SafeAreaView style={styles.wrapper}>
             <FlatList
                     showsVerticalScrollIndicator={false}
-                    data={DATA}
+                    data={data}
                     renderItem={({item}) => 
-                    <BoxKontenRiwayat  kategori={item.kategori} 
-                                konten={item.konten} 
-                                title={item.title} 
-                                img={item.img} 
-                                isi={item.isi}
-                                onPress={()=> handleGoTo(item.screenName)}
+                    <BoxKontenRiwayat 
+                                kategori={item.tipe} 
+                                title={item.judul}
+                                isi={item.penulis.map(value=>value.nama)}
+                                onPress={()=> navigation.navigate(item.tipe.toString(), {id:item.konten_id})}
                                 />}
-                    keyExtractor={item => item.id}
+                    keyExtractor={item => item.id.toString()}
+                    enableEmptySections={true}
                 />
         </SafeAreaView>
         </View>

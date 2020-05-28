@@ -1,5 +1,5 @@
-import React, { Component, useState } from 'react';
-import { View, Text, StyleSheet, Alert } from 'react-native';
+import React, { Component, useState, useEffect } from 'react';
+import { View, Text, StyleSheet, Alert, SafeAreaView, ActivityIndicator } from 'react-native';
 import YouTube from 'react-native-youtube';
 import {
   widthPercentageToDP as wp,
@@ -10,35 +10,63 @@ import {
 } from 'react-native-responsive-screen';
 import { Icon } from 'react-native-elements';
 import { colors, icons, colortext } from '../../utils';
-import { TouchableHighlight } from 'react-native-gesture-handler';
+import { TouchableHighlight, FlatList } from 'react-native-gesture-handler';
 import { BookmarkButton } from '../../component/atoms';
+import AsyncStorage from '@react-native-community/async-storage';
+import { VideoPlayer } from '../../template';
+
 function PageVideo  ({videoId, title, route})  {
-  const [isReady, setIsReady]= useState(false);
-  const [status, setStatus]= useState();
-  const [quality, setQuality] = useState();
-  const [error, setError] = useState();
-  const {itemVideo, itemSumber, itemJudul} = route.params;
-    return (
-      <View style={styles.container}>
-        <YouTube
-        apiKey="AIzaSyBa_gh3C-qpXu3IwK1c503-2vvFtPeKsvM"
-        videoId={itemVideo.toString()} // The YouTube video ID
-        play // control playback of video with true/false
-        fullscreen={false} // video should play in fullscreen or inline
-        loop={false} // control whether the video should loop when ended
-        onReady={e => setIsReady(true)}
-        onChangeState={e => setStatus(e.state)}
-        onChangeQuality={e => setQuality(e.quality)}
-        onError={e => setError(e.error)}
-        style={styles.youtube}
-        />
-        <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
-          <Text style={styles.title}>{itemJudul}</Text>        
-          <BookmarkButton/>
-        </View>
-        <Text style={styles.sumber}>Sumber video channel youtube : {itemSumber}</Text>
+  const {id} = route.params;
+  const [data, setData] = useState();
+  const [loading,setLoading]= useState(true)
+  const getData = async () => {
+    const token = await AsyncStorage.getItem('userToken')
+    const userToken = JSON.parse(token)          
+    fetch(`http://117.53.47.76/kms_backend/public/api/konten/show/${id}`,
+    {
+        method:"GET",
+        headers: new Headers ( {
+            Authorization : 'Bearer ' + userToken
+        })
+    })
+    .then((response) => response.json())
+    .then((responseJson) => {
+        setLoading(false)
+        setData(responseJson.konten)
+        console.log(responseJson.konten)
+    }
+    )
+    .catch((error) => {
+        console.error(error);
+    });
+}
+useEffect(()=> {
+    getData()
+}, [])
+if (loading===true) {
+  return (
+      <View style={{alignItems: 'center',
+      flex: 1,
+      justifyContent: 'center'}}>
+          <ActivityIndicator size="large" color={colors.red}/>
       </View>
-      
+  )
+}
+    return (
+      <SafeAreaView>
+        <FlatList 
+           showsVerticalScrollIndicator={false}
+                data={data}
+                renderItem={({item}) =>  
+                  <VideoPlayer
+                    videoId={item.konten.map(value => value.video_audio).toString()}
+                    judul={item.judul}
+                    sumber={item.konten.map(value => value.isi)}
+                  />  }
+                keyExtractor={item => item.id.toString()}
+                enableEmptySections={true}
+        />
+      </SafeAreaView>      
     );
   }
 

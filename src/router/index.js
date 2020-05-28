@@ -1,6 +1,6 @@
 import React, { useReducer, useEffect, useState } from 'react';
 import { createStackNavigator } from '@react-navigation/stack';
-import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil, Riwayat, Kategori, KategoriArtikel, DaftarVideo, DaftarDokumen, DaftarArtikel, NavigationBar, PageVideo, PageDokumen, PageArtikel} from '../pages';
+import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home, DaftarNotifikasi, Tersimpan, Profil,  Kategori, KategoriArtikel, DaftarVideo, DaftarDokumen, DaftarArtikel, NavigationBar, PageVideo, PageDokumen, PageArtikel} from '../pages';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors, icons } from '../utils';
 import { Icon } from 'react-native-elements';
@@ -34,12 +34,11 @@ const Router = () => {
             <Stack.Screen name="Notifikasi" component={DaftarNotifikasi}/>
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
-            <Stack.Screen name="Riwayat" component={Riwayat}/>
             <Stack.Screen name="Kategori Artikel" component={KategoriArtikel}/>
             <Stack.Screen name="Daftar Video" component={DaftarVideo}/>
             <Stack.Screen name="Daftar E-Dokumen" component={DaftarDokumen}/>
             <Stack.Screen name="Daftar Artikel" component={DaftarArtikel}/>
-            <Stack.Screen name="VideoAudio" component={PageVideo}/>
+            <Stack.Screen name="Video" component={PageVideo}/>
             <Stack.Screen name= 'EDokumen' component={PageDokumen}/>
             <Stack.Screen name= 'Artikel' component={PageArtikel}/>
         </Stack.Navigator>

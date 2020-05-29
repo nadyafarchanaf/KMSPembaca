@@ -12,8 +12,33 @@ import { set } from 'react-native-reanimated';
 
 
 function Item({ id }) {
-    const [selected, setSelected] = useState(false);
+    const [selected, setSelected] = useState();
+    const getData = async () => {
+    const token = await AsyncStorage.getItem('userToken')
+    const userToken = JSON.parse(token)          
+        fetch(`http://117.53.47.76/kms_backend/public/api/konten/show/${id}`,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+          console.log(responseJson.konten.map(value => value.bookmark).toString())  
+          setSelected(responseJson.konten.map(value => value.bookmark).toString())
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+    useEffect(()=> {
+        getData()
+    }, [])
+    const [bookmark, setBookmark]=useState() 
     const add = async () => {
+      setBookmark({bookmark:"true"})
       const token = await AsyncStorage.getItem('userToken')
       const userToken = JSON.parse(token)          
           fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark/add/${id}`,
@@ -23,12 +48,12 @@ function Item({ id }) {
                   Authorization : 'Bearer ' + userToken,
                   Accept: 'application/json',
                   'Content-Type': 'application/json'
-              })
+              }),
+              body : JSON.stringify(bookmark)
           })
           .then((response) => response.json())
           .then((responseJson) => {
-              console.log(responseJson)
-              setSelected(true);
+              setSelected('true');
           }
           )
           .catch((error) => {
@@ -36,6 +61,7 @@ function Item({ id }) {
           });
       }
     const remove = async () => {
+      setBookmark({bookmark:"false"})
       const token = await AsyncStorage.getItem('userToken')
       const userToken = JSON.parse(token)          
           fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark/delete/${id}`,
@@ -45,19 +71,19 @@ function Item({ id }) {
                   Authorization : 'Bearer ' + userToken,
                   Accept: 'application/json',
                   'Content-Type': 'application/json'
-              })
+              }),
+              body : JSON.stringify(bookmark)
           })
           .then((response) => response.json())
           .then((responseJson) => {
-              console.log(responseJson)
-              setSelected(false)
+              setSelected('false')
           }
           )
           .catch((error) => {
               console.error(error);
           });
       }
-    if (selected === true) {
+    if (selected === 'true') {
       return(
         <Icon
         name='bookmark'

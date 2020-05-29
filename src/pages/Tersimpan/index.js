@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton, BoxKonten, BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
@@ -13,7 +13,7 @@ const Tersimpan = ({navigation}) => {
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)          
-        fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark`,
+        fetch(`http://117.53.47.76/kms_backend/public/api/petani/bookmark`,
         {
             method:"GET",
             headers: new Headers ( {
@@ -45,6 +45,18 @@ const Tersimpan = ({navigation}) => {
         });
         setData (newData)
       };
+      const [refreshing,setRefreshing]= useState(false)
+      const onRefresh = useCallback( async ()=> {
+        setRefreshing(true);
+        try {
+            getData();
+            setRefreshing(false)
+        }  
+        catch {
+            console.error();
+        }             
+
+      }, [refreshing])
     if (loading===true) {
             return (
                 <View style={{alignItems: 'center',
@@ -59,6 +71,9 @@ const Tersimpan = ({navigation}) => {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+                }
                 ListHeaderComponent= {
                     <>
                     <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>

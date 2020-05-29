@@ -24,8 +24,7 @@ function Item({ id }) {
             })
         })
         .then((response) => response.json())
-        .then((responseJson) => {
-          console.log(responseJson.konten.map(value => value.bookmark).toString())  
+        .then((responseJson) => { 
           setSelected(responseJson.konten.map(value => value.bookmark).toString())
         }
         )
@@ -41,7 +40,7 @@ function Item({ id }) {
       setBookmark({bookmark:"true"})
       const token = await AsyncStorage.getItem('userToken')
       const userToken = JSON.parse(token)          
-          fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark/add/${id}`,
+          fetch(`http://117.53.47.76/kms_backend/public/api/petani/bookmark/add/${id}`,
           {
               method:"POST",
               headers: new Headers ( {
@@ -64,7 +63,7 @@ function Item({ id }) {
       setBookmark({bookmark:"false"})
       const token = await AsyncStorage.getItem('userToken')
       const userToken = JSON.parse(token)          
-          fetch(`http://117.53.47.76/kms_backend/public/api/pakar/bookmark/delete/${id}`,
+          fetch(`http://117.53.47.76/kms_backend/public/api/petani/bookmark/delete/${id}`,
           {
               method:"DELETE",
               headers: new Headers ( {

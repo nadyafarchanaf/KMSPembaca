@@ -1,5 +1,5 @@
-import React from 'react';
-import { View, Text, Image } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, Image, ActivityIndicator, SafeAreaView, FlatList } from 'react-native';
 import { BookmarkButton } from '../../component/atoms';
 import { Kelapa } from '../../assets';
 import {
@@ -8,19 +8,64 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-const PageArtikel = ({judul, penulis, isi}) => {
+import AsyncStorage from '@react-native-community/async-storage';
+import { ArtikelPage } from '../../template';
+import { colors } from '../../utils';
+
+const PageArtikel = ({route}) => {
+    const {id} = route.params;
+    const [data, setData] = useState();
+    const [loading,setLoading]= useState(true)
+    const getData = async () => {
+    const token = await AsyncStorage.getItem('userToken')
+    const userToken = JSON.parse(token)          
+        fetch(`http://117.53.47.76/kms_backend/public/api/konten/show/${id}`,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setLoading(false)
+            setData(responseJson.konten)
+            console.log(responseJson.konten)
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+    }
+    useEffect(()=> {
+        getData()
+    }, [])
+    if (loading===true) {
     return (
-        <View>
-            <View style={{flexDirection:'row', justifyContent: 'space-between'}}>
-                <View style={{flexDirection:'column'}}>
-                    <Text style={styles.judul}>a{judul}</Text>
-                    <Text style={styles.text}>oleh {penulis}</Text>
-                </View>
-                <BookmarkButton/>
-            </View>
-            <Image style={styles.image} source={Kelapa}/>
-            <Text>{isi}</Text>
+        <View style={{alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'}}>
+            <ActivityIndicator size="large" color={colors.red}/>
         </View>
+    )
+    } 
+    return (
+        <SafeAreaView>
+              <FlatList
+                  showsVerticalScrollIndicator={false}
+                  data={data}
+                  renderItem={({item}) => 
+                  <ArtikelPage
+                    id={item.konten_id}
+                    judul={item.judul}
+                    penulis= {item.penulis.map(value => value.nama)}
+                    // img={item.konten.map(value => value.foto)}
+                    isi={item.konten.map(value => value.isi)}
+                  />
+                  }
+                  keyExtractor={item => item.id.toString()}
+              />
+          </SafeAreaView>
     )
 }
 const styles = {

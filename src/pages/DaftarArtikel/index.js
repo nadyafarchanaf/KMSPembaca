@@ -1,31 +1,77 @@
-import React from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView } from 'react-native';
+import React, { useState, useEffect } from 'react';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton, BoxKonten } from '../../component/atoms';
 import { Kelapa } from '../../assets';
 import { colors } from '../../utils';
+import AsyncStorage from '@react-native-community/async-storage';
 const DaftarArtikel = ({navigation}) => {
-    const handleGoTo = screen => {
-        navigation.navigate(screen);
-    };
+    const [loading, setLoading]=useState(true)
+    const [data, setData] = useState([]);
+    const [arraydata, setArrayData]=useState([]);
+    const getData = async () => {
+        const token = await AsyncStorage.getItem('userToken')
+        const userToken = JSON.parse(token)          
+        fetch(`http://117.53.47.76/kms_backend/public/api/konten/artikel`,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setLoading(false)
+            setData(responseJson.konten)
+            setArrayData(responseJson.konten)
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+       
+    }
+    useEffect(()=> {
+        getData()
+    }, [])
+    const [value, setValue] = useState()
+    const searchFilterFunction = text => {
+        
+        setValue(text)
+        const newData = arraydata.filter(item => {
+          const itemData = `${item.judul.toUpperCase()}`;
+          const textData = text.toUpperCase();
+    
+          return itemData.indexOf(textData) > -1;
+        });
+        setData (newData)
+      };
+      
+      if (loading===true) {
+            return (
+                <View style={{alignItems: 'center',
+                flex: 1,
+                justifyContent: 'center'}}>
+                    <ActivityIndicator size="large" color={colors.red}/>
+                </View>
+            )
+    }
     return (
         <SafeAreaView style={{backgroundColor:colors.white1, flex:1}}>
             <FlatList
                 showsVerticalScrollIndicator={false}
-                data={DATA}
+                data={data}
                 ListHeaderComponent= {
                     <>
-                    <SearchBox/>
+                    <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
                     </> }
                 renderItem={({item}) => 
-                <BoxKonten  kategori={item.kategori} 
-                            konten={item.konten} 
-                            title={item.title} 
-                            img={item.img} 
-                            isi={item.isi}
-                            onPress={()=> handleGoTo(item.screenName)}
+                <BoxKonten  kategori={item.tipe} 
+                            title={item.judul} 
+                            isi={item.konten.map(value => value.isi).toString()}
+                            onPress={()=> navigation.navigate('Artikel', {id:item.id})}
                             />}
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
             />
             </SafeAreaView>
     )

@@ -72,7 +72,6 @@ const DaftarVideo = ({navigation}) => {
                             onPress={()=> navigation.navigate('Video', { id:item.id})}
                             />}
                 keyExtractor={item => item.id.toString()}
-                enableEmptySections={true}
             />
         </SafeAreaView>
     )

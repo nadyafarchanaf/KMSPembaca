@@ -71,7 +71,6 @@ const KategoriArtikel = ({navigation}) => {
                     <WhiteButton title={item.kategori} onPress={()=> handleGoTo('Daftar Artikel', {itemId: item.id,
               otherParam:item.title,})}/>}
                 keyExtractor={item=> item.id.toString()}
-                enableEmptySections={true}
             />
         </SafeAreaView>
     )

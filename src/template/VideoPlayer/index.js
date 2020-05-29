@@ -14,7 +14,7 @@ import { TouchableHighlight, FlatList } from 'react-native-gesture-handler';
 import { BookmarkButton } from '../../component/atoms';
 import AsyncStorage from '@react-native-community/async-storage';
 
-function VideoPlayer  ({videoId, sumber, judul})  {
+function VideoPlayer  ({videoId, sumber, judul, id})  {
   const [isReady, setIsReady]= useState(false);
   const [status, setStatus]= useState();
   const [quality, setQuality] = useState();
@@ -35,7 +35,7 @@ function VideoPlayer  ({videoId, sumber, judul})  {
         />
         <View style={{flexDirection: 'row', justifyContent: 'space-between'}}>
           <Text style={styles.title}>{judul}</Text>        
-          <BookmarkButton/>
+          <BookmarkButton id={id}/>
         </View>
         <Text style={styles.sumber}>Sumber video channel youtube : {sumber}</Text>
       </View>  

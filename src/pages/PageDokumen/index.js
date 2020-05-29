@@ -67,7 +67,6 @@ if (loading===true) {
                   />
                   }
                   keyExtractor={item => item.id.toString()}
-                    enableEmptySections={true}
               />
           </SafeAreaView>
       )

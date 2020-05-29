@@ -4,15 +4,6 @@ import { BoxNotifikasi } from '../../component/molecules';
 import { PakarFemale } from '../../assets';
 import { ScrollView } from 'react-native-gesture-handler';
 
-const DATA = [
-    {
-        id: '1',
-        img:PakarFemale,
-        name:'Nadya Farchana',
-        role:'Pakar Sawit',
-        isi:'aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
-    }
-]
 const DaftarNotifikasi = ({jumlah,notif}) => {
     return (
         <SafeAreaView showsVerticalScrollIndicator={false} style={styles.wrapper}>
@@ -27,7 +18,6 @@ const DaftarNotifikasi = ({jumlah,notif}) => {
                                     />  
                 }
                 keyExtractor={item => item.id}
-                enableEmptySections={true}
             />
         </SafeAreaView>
     )

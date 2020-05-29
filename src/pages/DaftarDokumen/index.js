@@ -71,7 +71,6 @@ const DaftarDokumen = ({navigation}) => {
                             onPress={()=> navigation.navigate('EDokumen', {id:item.id})}
                             />}
                 keyExtractor={item => item.id.toString()}
-                enableEmptySections={true}
             />
         </SafeAreaView>
     )

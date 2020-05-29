@@ -59,12 +59,12 @@ if (loading===true) {
                 data={data}
                 renderItem={({item}) =>  
                   <VideoPlayer
+                    id={item.id}
                     videoId={item.konten.map(value => value.video_audio).toString()}
                     judul={item.judul}
                     sumber={item.konten.map(value => value.isi)}
                   />  }
                 keyExtractor={item => item.id.toString()}
-                enableEmptySections={true}
         />
       </SafeAreaView>      
     );

@@ -11,15 +11,6 @@ import {
 import AsyncStorage from '@react-native-community/async-storage';
 
 const Splash = ({navigation}) => {
-    
-    const detectLogin = async() => {
-        const token = await AsyncStorage.getItem('userToken')
-        if(token){
-            navigation.replace('KMS Sawit')
-        }else{
-            navigation.replace('WelcomePage1')
-        }
-    }
     useEffect (()=> {
         setTimeout(async() => {
             const token = await AsyncStorage.getItem('userToken')
@@ -31,7 +22,9 @@ const Splash = ({navigation}) => {
         }, 2000);
     }, []);
     return (
-        <View style={{position:'relative'}}>
+        <View style={{alignItems: 'center',
+        flex: 1,
+        justifyContent: 'center'}}>
         <StatusBar barStyle="dark-content" backgroundColor='#fff' />
         <View style={styles.boxlogo}>
             <Image source={Logo} style={styles.logo}/>
@@ -43,7 +36,6 @@ const Splash = ({navigation}) => {
 const styles = {
     text : {
         marginTop: 20,
-        marginBottom: 30,
         alignItems: 'center',
         textAlign: 'center',
         fontFamily: 'Nunito',
@@ -64,7 +56,6 @@ const styles = {
         width: wp('30'),
         height: hp('16'), 
         alignSelf: 'center',
-        marginTop: 160,
         shadowColor: "#000",
         shadowOffset: {
             width: 0,

@@ -23,7 +23,6 @@ const Home = ({navigation}) => {
         .then((response) => response.json())
         .then((responseJson) => {
             setData(responseJson.bookmark)
-            console.log(responseJson.bookmark)
         }
         )
         .catch((error) => {
@@ -45,7 +44,7 @@ const Home = ({navigation}) => {
                     onPressArtikel={()=>navigation.navigate('Kategori Artikel')} 
                     onPressVideo={()=>navigation.navigate('Daftar Video')} 
                     onPressDokumen={()=>navigation.navigate('Daftar E-Dokumen')}/>
-                    <BoxRiwayat />
+                    <Text style={styles.riwayat}>Riwayat</Text>
                     </>
                 }
                 data={data}
@@ -57,7 +56,6 @@ const Home = ({navigation}) => {
                         onPressKonten={()=> navigation.navigate(item.tipe.toString(), {id:item.konten_id})}
                                 />}
                         keyExtractor={(item) => item.id.toString()}
-                        enableEmptySections={true}
             />
         </View>
     );
@@ -66,6 +64,15 @@ const Home = ({navigation}) => {
 const styles = {
     wrapper:{
         flex:1,
+    },
+    riwayat : {
+        fontFamily: 'Nunito',
+        fontWeight: 'bold',
+        fontSize: 15,
+        lineHeight: 20,
+        color: colors.red,
+        marginLeft: 12,
+        marginBottom:8
     }
 };
 

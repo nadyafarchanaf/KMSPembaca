@@ -33,7 +33,7 @@ const styles = {
         borderColor: colors.gray4,
     },
     text : {
-        marginHorizontal: 15, 
+        marginHorizontal: 10, 
         color:colortext.black,
         fontSize: hp('2'), 
         fontFamily: 'Nunito', 
@@ -42,7 +42,7 @@ const styles = {
         textAlign: 'justify',
     },
     textisi: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         color:colortext.black,
         fontSize: hp('1.9'), 
         fontFamily: 'Nunito', 
@@ -51,7 +51,7 @@ const styles = {
         paddingBottom: 5
     },
     textkategori: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         marginTop:6,
         color:colortext.black,
         fontSize: hp('1.9'), 

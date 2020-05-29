@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, FlatList, SafeAreaView, ActivityIndicator, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton,  BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
@@ -7,9 +7,18 @@ import { colors } from '../../utils';
 import AsyncStorage from '@react-native-community/async-storage';
 
 const DaftarVideo = ({navigation}) => {
-    const handleGoTo = screen => {
-        navigation.navigate(screen);
-    };
+    const [refreshing,setRefreshing]= useState(false)
+      const onRefresh = useCallback( async ()=> {
+        setRefreshing(true);
+        try {
+            getData();
+            setRefreshing(false)
+        }  
+        catch {
+            console.error();
+        }             
+
+      }, [refreshing])
     const [loading, setLoading]= useState(true)
     const [data, setData] = useState();
     const [arraydata, setArrayData]=useState([]);
@@ -64,6 +73,9 @@ const DaftarVideo = ({navigation}) => {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+                }
                 renderItem={({item}) => 
                 <BoxKontenVideo  kategori={item.tipe} 
                             title={item.judul} 

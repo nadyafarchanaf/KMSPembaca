@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, SafeAreaView, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, FlatList, SafeAreaView, ActivityIndicator, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton, BoxKonten, BoxKontenVideo } from '../../component/atoms';
 import { Kelapa } from '../../assets';
@@ -34,6 +34,18 @@ const DaftarDokumen = ({navigation}) => {
     useEffect(()=> {
         getData()
     }, [])
+    const [refreshing,setRefreshing]= useState(false)
+    const onRefresh = useCallback( async ()=> {
+        setRefreshing(true);
+        try {
+            getData();
+            setRefreshing(false)
+        }  
+        catch {
+            console.error();
+        }             
+
+      }, [refreshing])
     const [value, setValue] = useState()
     const searchFilterFunction = text => {
         
@@ -61,6 +73,9 @@ const DaftarDokumen = ({navigation}) => {
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+                }
                 ListHeaderComponent= {
                     <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
                 }

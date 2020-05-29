@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import {View, Text, FlatList, StatusBar, RefreshControl} from 'react-native';
+import {View, Text, FlatList, StatusBar, RefreshControl, ActivityIndicator} from 'react-native';
 import { NavigasiBar, Notifikasi, KontenFeature, BoxRiwayat } from '../../component/molecules';
 import { ScrollView } from 'react-native-gesture-handler';
 import { ProfilBeranda, BoxKonten, HeaderBar, BoxKontenRiwayat } from '../../component/atoms';
@@ -10,7 +10,6 @@ import AsyncStorage from '@react-native-community/async-storage';
 
 const Home = ({navigation}) => {
     const [data, setData] = useState();
-    const [loading, setLoading]= useState();
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)          
@@ -33,15 +32,6 @@ const Home = ({navigation}) => {
     useEffect(()=> {
         getData()
     }, [])
-    if (loading===true) {
-        return (
-            <View style={{alignItems: 'center',
-            flex: 1,
-            justifyContent: 'center'}}>
-                <ActivityIndicator size="large" color={colors.red}/>
-            </View>
-        )
-      }
       const [refreshing,setRefreshing]= useState(false)
       const onRefresh = useCallback( async ()=> {
         setRefreshing(true);
@@ -62,7 +52,7 @@ const Home = ({navigation}) => {
                     <>
                     <Notifikasi onPress={()=>navigation.navigate('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
                     <KontenFeature 
-                    onPressArtikel={()=>navigation.navigate('Kategori Artikel')} 
+                    onPressArtikel={()=>navigation.navigate('Daftar Artikel')} 
                     onPressVideo={()=>navigation.navigate('Daftar Video')} 
                     onPressDokumen={()=>navigation.navigate('Daftar E-Dokumen')}/>
                     <Text style={styles.riwayat}>Riwayat</Text>

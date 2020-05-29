@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator } from 'react-native';
+import React, { useState, useEffect, useCallback } from 'react';
+import { View, Text, FlatList, StyleSheet, SafeAreaView, ActivityIndicator, RefreshControl } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler';
 import { SearchBox, WhiteButton, BoxKonten } from '../../component/atoms';
 import { Kelapa } from '../../assets';
@@ -29,24 +29,31 @@ const DaftarArtikel = ({navigation}) => {
         .catch((error) => {
             console.error(error);
         });
-       
     }
     useEffect(()=> {
         getData()
     }, [])
     const [value, setValue] = useState()
     const searchFilterFunction = text => {
-        
         setValue(text)
         const newData = arraydata.filter(item => {
-          const itemData = `${item.judul.toUpperCase()}`;
+          const itemData = `${item.judul.toUpperCase()} ${item.kategori.toUpperCase()} ${item.konten.map(value => value.isi).toString().toUpperCase()}`;
           const textData = text.toUpperCase();
-    
           return itemData.indexOf(textData) > -1;
         });
         setData (newData)
       };
-      
+    const [refreshing,setRefreshing]= useState(false)
+    const onRefresh = useCallback( async ()=> {
+        setRefreshing(true);
+        try {
+            getData();
+            setRefreshing(false)
+        }  
+        catch {
+            console.error();
+        } 
+      }, [refreshing])
       if (loading===true) {
             return (
                 <View style={{alignItems: 'center',
@@ -55,18 +62,19 @@ const DaftarArtikel = ({navigation}) => {
                     <ActivityIndicator size="large" color={colors.red}/>
                 </View>
             )
-    }
+        }
     return (
         <SafeAreaView style={{backgroundColor:colors.white1, flex:1}}>
+            <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
             <FlatList
                 showsVerticalScrollIndicator={false}
                 data={data}
-                ListHeaderComponent= {
-                    <>
-                    <SearchBox onChangeText={ text => searchFilterFunction(text)} value={value}/>
-                    </> }
+                refreshControl={
+                    <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
+                }
                 renderItem={({item}) => 
-                <BoxKonten  kategori={item.tipe} 
+                <BoxKonten  tipe={item.tipe} 
+                            kategori={item.kategori}
                             title={item.judul} 
                             isi={item.konten.map(value => value.isi).toString()}
                             onPress={()=> navigation.navigate('Artikel', {id:item.id})}

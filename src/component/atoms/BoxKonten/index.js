@@ -8,11 +8,11 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-const BoxKonten = ({title,img, isi, kategori, onPress}) => {
+const BoxKonten = ({title,tipe, isi, kategori, onPress}) => {
     return (
     <TouchableOpacity style={styles.wrapper} activeOpacity={0.7} onPress={onPress}>
           <View style={{marginRight:5}}>
-                <Text style={styles.textkategori}>{kategori}</Text>
+                <Text style={styles.textkategori}>{tipe} - {kategori}</Text>
                 <Text style={styles.text}>{title}</Text>
                 <Text style={styles.textisi}>{isi.slice(0,100)}..</Text>
             </View>
@@ -31,7 +31,7 @@ const styles = {
         borderColor: colors.gray4,
     },
     text : {
-        marginHorizontal: 15, 
+        marginHorizontal: 10, 
         color:colortext.black,
         fontSize: hp('2'), 
         fontFamily: 'Nunito', 
@@ -40,7 +40,7 @@ const styles = {
         textAlign: 'justify',
     },
     textisi: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         color:colortext.black,
         fontSize: hp('1.9'), 
         fontFamily: 'Nunito', 
@@ -49,14 +49,13 @@ const styles = {
         paddingBottom: 5
     },
     textkategori: {
-        marginHorizontal: 15,
+        marginHorizontal: 10,
         marginTop:6,
         color:colortext.black,
         fontSize: hp('1.9'), 
         fontFamily: 'Nunito', 
         fontWeight: '600', 
         textAlign: 'justify',
-        width:wp('60'),
     }
 
 }

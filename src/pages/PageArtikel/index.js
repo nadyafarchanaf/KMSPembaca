@@ -56,7 +56,7 @@ const PageArtikel = ({route}) => {
                   data={data}
                   renderItem={({item}) => 
                   <ArtikelPage
-                    id={item.konten_id}
+                    id={item.id}
                     judul={item.judul}
                     penulis= {item.penulis.map(value => value.nama)}
                     // img={item.konten.map(value => value.foto)}

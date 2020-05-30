@@ -49,7 +49,7 @@ const Notifikasi = ({notif, onPress, navigation}) => {
                         <View style={{flexDirection:"column",}}>
                             <View style={styles.button}>
                                 <View>
-                                    <Text style={styles.text}>{jumlah} Notifikasi baru</Text>
+                                    <Text style={styles.text}>{jumlah} Notifikasi</Text>
                                 </View>
                                 <View>
                                     <Text style={styles.lihat} onPress={onPress}>Lihat</Text>

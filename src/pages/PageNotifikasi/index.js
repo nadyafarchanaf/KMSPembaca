@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, Text, Image, ActivityIndicator, SafeAreaView, FlatList } from 'react-native';
-import { BookmarkButton } from '../../component/atoms';
-import { Kelapa } from '../../assets';
 import {
     widthPercentageToDP as wp,
     heightPercentageToDP as hp,
@@ -9,12 +7,12 @@ import {
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
 import AsyncStorage from '@react-native-community/async-storage';
-import { ArtikelPage } from '../../template';
+import { NotifikasiPage } from '../../template';
 import { colors } from '../../utils';
 
 const PageNotifikasi = ({route}) => {
     const {id} = route.params;
-    const [data, setData] = useState();
+    const [data, setData] = useState([]);
     const [loading,setLoading]= useState(true)
     const getData = async () => {
     const token = await AsyncStorage.getItem('userToken')
@@ -29,7 +27,7 @@ const PageNotifikasi = ({route}) => {
         .then((response) => response.json())
         .then((responseJson) => {
             setLoading(false)
-            setData(responseJson.konten)
+            setData([responseJson.notifikasi])
         }
         )
         .catch((error) => {
@@ -55,12 +53,9 @@ const PageNotifikasi = ({route}) => {
                   showsVerticalScrollIndicator={false}
                   data={data}
                   renderItem={({item}) => 
-                  <ArtikelPage
-                    id={item.id}
-                    judul={item.judul}
-                    penulis= {item.penulis.map(value => value.nama)}
-                    // img={item.konten.map(value => value.foto)}
-                    isi={item.konten.map(value => value.isi)}
+                  <NotifikasiPage
+                    judul={item.headline}
+                    isi={item.isi}
                   />
                   }
                   keyExtractor={item => item.id.toString()}

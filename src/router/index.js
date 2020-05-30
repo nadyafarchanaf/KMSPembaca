@@ -4,6 +4,7 @@ import { Splash, Login, Register, WelcomePage1, WelcomePage2, WelcomePage3, Home
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import { colors, icons } from '../utils';
 import { Icon } from 'react-native-elements';
+import PageNotifikasi from '../pages/PageNotifikasi';
 const styles = {
   icon : {
       marginTop: 2,
@@ -31,7 +32,7 @@ const Router = () => {
             <Stack.Screen name="Login" component={Login} options={{headerShown:false}}/>
             <Stack.Screen name="Register" component={Register} options={{headerShown:false}}/>
             <Stack.Screen name="Beranda" component={Home} options={{headerShown:false}}/>
-            <Stack.Screen name="Notifikasi" component={DaftarNotifikasi}/>
+            <Stack.Screen name="Daftar Notifikasi" component={DaftarNotifikasi}/>
             <Stack.Screen name="Tersimpan" component={Tersimpan}/>
             <Stack.Screen name="Profil" component={Profil}/>
             <Stack.Screen name="Kategori Artikel" component={KategoriArtikel}/>
@@ -41,6 +42,7 @@ const Router = () => {
             <Stack.Screen name="Video" component={PageVideo}/>
             <Stack.Screen name= 'EDokumen' component={PageDokumen}/>
             <Stack.Screen name= 'Artikel' component={PageArtikel}/>
+            <Stack.Screen name= 'Notifikasi' component={PageNotifikasi}/>
         </Stack.Navigator>
     );
 };

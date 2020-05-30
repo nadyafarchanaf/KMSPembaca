@@ -50,7 +50,7 @@ const Home = ({navigation}) => {
             <FlatList  showsVerticalScrollIndicator={false}
                 ListHeaderComponent= {
                     <>
-                    <Notifikasi onPress={()=>navigation.navigate('Notifikasi')} jumlah="3" notif="pada hari minggu" notif="aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"/>
+                    <Notifikasi onPress={()=>navigation.navigate('Daftar Notifikasi')} />
                     <KontenFeature 
                     onPressArtikel={()=>navigation.navigate('Daftar Artikel')} 
                     onPressVideo={()=>navigation.navigate('Daftar Video')} 

@@ -1,10 +1,32 @@
-import React, { useCallback, useState } from 'react';
+import React, { useCallback, useState, useEffect } from 'react';
 import { View , Text, SafeAreaView, FlatList, RefreshControl} from 'react-native';
 import { BoxNotifikasi } from '../../component/molecules';
 import { PakarFemale } from '../../assets';
 import { ScrollView } from 'react-native-gesture-handler';
+import AsyncStorage from '@react-native-community/async-storage';
+import { NavigationContainer } from '@react-navigation/native';
 
-const DaftarNotifikasi = ({jumlah,notif}) => {
+const DaftarNotifikasi = ({jumlah,notif, navigation}) => {
+    const [notifikasi, setNotifikasi]= useState();
+    const getNotifikasi = async () => {
+        const token = await AsyncStorage.getItem('userToken')
+        const userToken = JSON.parse(token)          
+        fetch(`http://117.53.47.76/kms_backend/public/api/notifikasi/all`,
+        {
+            method:"GET",
+            headers: new Headers ( {
+                Authorization : 'Bearer ' + userToken
+            })
+        })
+        .then((response) => response.json())
+        .then((responseJson) => {
+            setNotifikasi(responseJson.notifikasi)
+        }
+        )
+        .catch((error) => {
+            console.error(error);
+        });
+    }
     const [refreshing,setRefreshing]= useState(false)
     const onRefresh = useCallback( async ()=> {
         setRefreshing(true);
@@ -17,22 +39,26 @@ const DaftarNotifikasi = ({jumlah,notif}) => {
         }             
 
       }, [refreshing])
+      useEffect(()=> {
+        getNotifikasi()
+    }, [])
     return (
         <SafeAreaView showsVerticalScrollIndicator={false} style={styles.wrapper}>
            <FlatList
                 showsVerticalScrollIndicator={false}
-                data={DATA}
+                data={notifikasi}
                 refreshControl={
                     <RefreshControl refreshing={refreshing} onRefresh={onRefresh}/>
                 }
                 renderItem={({item}) => 
-                    <BoxNotifikasi  img={item.img} 
-                                    name={item.name} 
+                    <BoxNotifikasi  id={item.id}
+                                    name={item.headline} 
                                     role={item.role} 
-                                    isi={item.isi}
+                                    isi={item.isi.slice(0,78)}
+                                    onPress={()=> navigation.navigate('Notifikasi', {id:item.id})}
                                     />  
                 }
-                keyExtractor={item => item.id}
+                keyExtractor={item => item.id.toString()}
             />
         </SafeAreaView>
     )
@@ -45,7 +71,6 @@ const styles = {
         marginHorizontal: 14,
     },
     text :{
-    //    / color: colortext.white,
         fontFamily: 'Nunito',
         fontWeight: '700',
         fontSize: 15,

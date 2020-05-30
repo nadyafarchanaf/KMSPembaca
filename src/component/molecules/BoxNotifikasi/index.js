@@ -8,15 +8,34 @@ import {
     listenOrientationChange as loc,
     removeOrientationListener as rol
   } from 'react-native-responsive-screen';
-const BoxNotifikasi = ({img, name, role, isi}) => {
+import { PakarMale } from '../../../assets';
+import AsyncStorage from '@react-native-community/async-storage';
+const BoxNotifikasi = ({name, isi, onPress, id}) => {
   const handlerLongClick = () => {
     //handler for Long Click
+    const remove = async () => {
+      const token = await AsyncStorage.getItem('userToken')
+      const userToken = JSON.parse(token)          
+      fetch(`http://117.53.47.76/kms_backend/public/api/notifikasi/delete/${id}`,
+      {
+        method:"DELETE",
+        headers: new Headers ( {
+            Authorization : 'Bearer ' + userToken,
+            Accept: 'application/json',
+            'Content-Type': 'application/json'
+        }),
+        })
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error(error);
+        });
+  }
     Alert.alert(
           "Hapus notifikasi?",
           " ",
         [
           { text: "Batal", onPress: () => console.log("Batal Hapus Notifikasi") },
-          { text: "Hapus", onPress: () => console.log("Hapus Notifikasi") },
+          { text: "Hapus", onPress: () => remove() },
         ],
         { cancelable: true },
           )
@@ -24,12 +43,12 @@ const BoxNotifikasi = ({img, name, role, isi}) => {
     return (
         <TouchableOpacity onLongPress={
             handlerLongClick
-          } style={styles.wrapper} activeOpacity={0.6}>
-            <ImageCircle img={img} />
+          } style={styles.wrapper} activeOpacity={0.6}
+          onPress={onPress}>
+            <ImageCircle img={PakarMale} />
             <View style={{flexDirection:'column'}}>
                 <View style={{flexDirection:'row'}}>
-                    <Text style={styles.text}>{name} - </Text>
-                    <Text style={styles.text}>{role}</Text>
+                    <Text style={styles.text}>{name}</Text>
                 </View>
                 <Text style={styles.textisi}>{isi}</Text>
             </View>
@@ -83,9 +102,10 @@ const styles = {
     text :{
     //    / color: colortext.white,
         fontFamily: 'Nunito',
-        fontWeight: '600',
+        fontWeight: '700',
         fontSize: 13,
         marginTop: 10,
+        width:wp('70')
     },
     textisi :{
         //    / color: colortext.white,
@@ -93,7 +113,7 @@ const styles = {
             fontWeight: 'normal',
             fontSize: 13,
             textAlign: 'justify',
-            width:wp('72'),
+            width:wp('74'),
             marginBottom:5
         },
     image :{

@@ -11,56 +11,15 @@ import { NotifikasiPage } from '../../template';
 import { colors } from '../../utils';
 
 const PageNotifikasi = ({route}) => {
-    const {id} = route.params;
-    const [data, setData] = useState([]);
-    const [loading,setLoading]= useState(true)
-    const getData = async () => {
-    const token = await AsyncStorage.getItem('userToken')
-    const userToken = JSON.parse(token)          
-        fetch(`http://117.53.47.76/kms_backend/public/api/notifikasi/show/${id}`,
-        {
-            method:"GET",
-            headers: new Headers ( {
-                Authorization : 'Bearer ' + userToken
-            })
-        })
-        .then((response) => response.json())
-        .then((responseJson) => {
-            setLoading(false)
-            setData([responseJson.notifikasi])
-        }
-        )
-        .catch((error) => {
-            console.error(error);
-        });
-    }
-    useEffect(()=> {
-        getData()
-    }, [])
-    if (loading===true) {
-    return (
-        <View style={{alignItems: 'center',
-        flex: 1,
-        justifyContent: 'center'}}>
-            <ActivityIndicator size="large" color={colors.red}/>
-        </View>
-    )
-    } 
-    
+    const {headline, isi} = route.params;
+      
     return (
         <SafeAreaView>
-              <FlatList
-                  showsVerticalScrollIndicator={false}
-                  data={data}
-                  renderItem={({item}) => 
                   <NotifikasiPage
-                    judul={item.headline}
-                    isi={item.isi}
+                    judul={headline}
+                    isi={isi}
                   />
-                  }
-                  keyExtractor={item => item.id.toString()}
-              />
-          </SafeAreaView>
+        </SafeAreaView>
     )
 }
 const styles = {

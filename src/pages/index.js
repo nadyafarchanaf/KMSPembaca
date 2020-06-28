@@ -18,6 +18,7 @@ import PageDokumen from './PageDokumen';
 import PageArtikel from './PageArtikel';
 import PageNotifikasi from './PageNotifikasi'
 export {
+    PageNotifikasi,
     PageArtikel,
     PageDokumen,
     PageVideo,

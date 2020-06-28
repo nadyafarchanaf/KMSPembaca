@@ -13,7 +13,7 @@ const Home = ({navigation}) => {
     const getData = async () => {
         const token = await AsyncStorage.getItem('userToken')
         const userToken = JSON.parse(token)          
-        fetch(`http://117.53.47.76/kms_backend/public/api/petani/riwayat`,
+        fetch(`http://117.53.47.76/kms_backend/public/api/riwayat`,
         {
             method:"GET",
             headers: new Headers ( {
